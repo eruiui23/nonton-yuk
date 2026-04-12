@@ -5,11 +5,11 @@ type GenreSearchProps = {
 
 export default function GenreSearch({ search, onSearchChange }: GenreSearchProps) {
   return (
-    <div className="max-w-md mx-auto mb-10">
+    <div className="max-w-xl mx-auto mb-10">
       <input
         type="text"
         placeholder="Cari genre... (misal: action, komedi)"
-        className="input input-bordered input-primary w-full shadow-sm rounded-full px-6"
+        className="input input-primary input-lg w-full rounded-full shadow-lg"
         value={search}
         onChange={(e) => onSearchChange(e.target.value)}
       />

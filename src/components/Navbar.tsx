@@ -9,7 +9,10 @@ export default function Navbar() {
 
   // Trik Hydration: Mencegah error layar kedip saat Next.js membaca localStorage
   const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsMounted(true), 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const handleLogout = () => {
     // 1. Bersihkan brankas Zustand di LocalStorage
@@ -27,16 +30,21 @@ export default function Navbar() {
   if (!isMounted) return <div className="navbar bg-base-100 shadow-md h-16"></div>;
 
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 sm:px-8">
-      {/* BAGIAN KIRI: Logo Aplikasi */}
-      <div className="flex-1">
-        <Link href="/" className="text-2xl font-black font-mono text-primary tracking-tighter hover:scale-105 transition-transform">
-          NONTON<span className="text-base-content">YUK.</span>
+    <div className="navbar sticky top-0 z-50 border-b border-base-200/80 bg-base-100/95 backdrop-blur-xl px-4 sm:px-8 shadow-sm">
+      <div className="flex-1 gap-4">
+        <Link href="/" className="inline-flex items-center gap-2 text-2xl font-extrabold tracking-tight text-primary">
+          <span className="inline-block rounded-xl bg-primary/15 px-3 py-1 text-base-content">🎬</span>
+          NontonYuk
         </Link>
-        <Link href="/genres" className="btn btn-ghost font-medium">Eksplorasi Kategori</Link>
       </div>
-
-      {/* BAGIAN KANAN: Menu Dinamis */}
+      <div className="hidden md:flex gap-2">
+        <Link href="/genres" className="btn btn-ghost btn-sm">
+          Kategori
+        </Link>
+        <Link href="/" className="btn btn-ghost btn-sm">
+          Film
+        </Link>
+      </div>
       <div className="flex-none gap-2">
         {!token ? (
           // SKENARIO A: Guest (Belum Login)

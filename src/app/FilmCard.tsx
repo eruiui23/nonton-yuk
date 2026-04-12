@@ -12,8 +12,8 @@ interface Film {
 
 export default function FilmCard({ film }: { film: Film }) {
     return (
-        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 border border-base-200 overflow-hidden group">
-            <figure className="h-80 bg-base-300 relative w-full overflow-hidden">
+        <div className="card glass-card hover:-translate-y-1 transform transition-all duration-300 overflow-hidden border border-base-200">
+            <figure className="relative h-80 w-full overflow-hidden bg-slate-100">
                 {film.imageUrl ? (
                     <Image
                         src={`https://film-management-api.labse.id/api/static/${film.imageUrl}`}
@@ -27,23 +27,25 @@ export default function FilmCard({ film }: { film: Film }) {
                         No Image
                     </div>
                 )}
-                <div className="absolute top-2 right-2 badge badge-secondary shadow-sm z-10 font-semibold uppercase text-[10px]">
+                <div className="absolute top-4 left-4 badge badge-secondary shadow-lg z-10 font-semibold uppercase text-[10px]">
                     {film.airing_status.replace('_', ' ')}
                 </div>
             </figure>
 
-            <div className="card-body p-5">
-                <h2 className="card-title text-lg line-clamp-1" title={film.title}>
+            <div className="card-body p-6">
+                <h2 className="text-xl font-semibold line-clamp-2" title={film.title}>
                     {film.title}
                 </h2>
-                <div className="flex justify-between items-center mt-2 text-sm font-medium text-base-content/70">
-                    <span className="flex items-center gap-1 text-warning font-bold">
-                        ⭐ {film.average_rating > 0 ? film.average_rating : 'N/A'}
-                    </span>
-                    <span className="badge badge-outline">{film.total_episodes} Eps</span>
+                <div className="mt-4 flex flex-col gap-3 text-sm text-base-content/75">
+                    <div className="flex items-center justify-between">
+                        <span className="badge badge-outline">{film.total_episodes} Eps</span>
+                        <span className="flex items-center gap-2 text-warning font-semibold">
+                            ⭐ {film.average_rating > 0 ? film.average_rating : 'N/A'}
+                        </span>
+                    </div>
                 </div>
-                <div className="card-actions justify-end mt-4">
-                    <Link href={`/films/${film.id}`} className="btn btn-primary w-full shadow-md">
+                <div className="card-actions justify-end mt-6">
+                    <Link href={`/films/${film.id}`} className="btn btn-primary btn-sm w-full md:w-auto">
                         Lihat Detail
                     </Link>
                 </div>

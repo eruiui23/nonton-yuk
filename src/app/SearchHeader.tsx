@@ -6,16 +6,16 @@ interface SearchHeaderProps {
 
 export default function SearchHeader({ search, setSearch, setPage }: SearchHeaderProps) {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+    <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <h1 className="text-4xl font-bold font-mono tracking-tight">Katalog Film</h1>
-        <p className="text-base-content/70 mt-2">Eksplorasi mahakarya sinematik terbaru.</p>
+        <h1 className="text-3xl font-bold tracking-tight">Temukan judul yang tepat</h1>
+        <p className="text-sm text-base-content/70 mt-2">Cari film berdasarkan judul untuk melihat detail, rating, dan review.</p>
       </div>
-      <div className="w-full md:w-auto">
+      <div className="w-full lg:w-auto">
         <input
           type="text"
           placeholder="Cari judul film..."
-          className="input input-bordered w-full md:w-80 focus:input-primary transition-all shadow-sm"
+          className="input input-primary input-lg w-full lg:w-[28rem] shadow-inner"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);

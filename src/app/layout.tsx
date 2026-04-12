@@ -34,10 +34,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}</body>
-
+      <body className="min-h-full">
+        <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.14),_transparent_18%),radial-gradient(circle_at_bottom_right,_rgba(16,185,129,0.12),_transparent_22%),var(--background)]">
+          <Navbar />
+          <main className="flex-1">{children}</main>
+        </div>
+      </body>
     </html>
   );
 }

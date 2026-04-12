@@ -9,19 +9,19 @@ export default function Pagination({ page, totalPages, setPage }: PaginationProp
 
   return (
     <div className="flex justify-center mt-12 mb-8">
-      <div className="join border border-base-300 shadow-sm">
+      <div className="join join-xs rounded-full border border-base-200 shadow-lg bg-base-100">
         <button
-          className="join-item btn btn-md"
+          className="join-item btn btn-sm btn-ghost"
           disabled={page === 1}
           onClick={() => setPage(page - 1)}
         >
           «
         </button>
-        <button className="join-item btn btn-md pointer-events-none bg-base-200">
+        <button className="join-item btn btn-sm btn-disabled pointer-events-none">
           {page} / {totalPages}
         </button>
         <button
-          className="join-item btn btn-md"
+          className="join-item btn btn-sm btn-ghost"
           disabled={page === totalPages}
           onClick={() => setPage(page + 1)}
         >

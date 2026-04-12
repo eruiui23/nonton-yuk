@@ -41,10 +41,11 @@ export default function RegisterForm() {
         router.push('/login');
       }, 2000);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string; error?: string } } };
       setErrorMsg(
-        error.response?.data?.message || 
-        error.response?.data?.error || 
+        err.response?.data?.message || 
+        err.response?.data?.error || 
         'Gagal mendaftar. Pastikan username/email belum digunakan.'
       );
     } finally {
@@ -53,8 +54,8 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="card-body">
-      <h2 className="card-title text-3xl font-bold mb-2 justify-center">Daftar Akun User</h2>
+    <div className="card-body p-8">
+      <h2 className="text-3xl font-bold mb-2 text-center">Daftar Akun User</h2>
       <p className="text-center text-base-content/70 mb-6">
         Lengkapi data di bawah ini untuk mulai menyimpan watchlist.
       </p>
@@ -80,7 +81,7 @@ export default function RegisterForm() {
             <input 
               type="text" 
               placeholder="tanpa_spasi" 
-              className="input input-bordered focus:input-primary" 
+              className="input input-bordered input-lg focus:input-primary" 
               required
               value={formData.username}
               onChange={(e) => setFormData({...formData, username: e.target.value.replace(/\s+/g, '')})}
@@ -92,7 +93,7 @@ export default function RegisterForm() {
             <input 
               type="text" 
               placeholder="Nama Tampilan" 
-              className="input input-bordered focus:input-primary" 
+              className="input input-bordered input-lg focus:input-primary" 
               required
               value={formData.display_name}
               onChange={(e) => setFormData({...formData, display_name: e.target.value})}
@@ -105,7 +106,7 @@ export default function RegisterForm() {
           <input 
             type="email" 
             placeholder="nama@email.com" 
-            className="input input-bordered focus:input-primary" 
+            className="input input-bordered input-lg focus:input-primary" 
             required
             value={formData.email}
             onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -117,7 +118,7 @@ export default function RegisterForm() {
           <input 
             type="password" 
             placeholder="••••••••" 
-            className="input input-bordered focus:input-primary" 
+            className="input input-bordered input-lg focus:input-primary" 
             required
             minLength={6}
             value={formData.password}
@@ -129,7 +130,7 @@ export default function RegisterForm() {
           <label className="label"><span className="label-text font-semibold">Bio</span></label>
           <textarea 
             placeholder="Ceritakan sedikit tentang dirimu..." 
-            className="textarea textarea-bordered focus:textarea-primary h-20" 
+            className="textarea textarea-bordered textarea-lg focus:textarea-primary h-24" 
             value={formData.bio}
             onChange={(e) => setFormData({...formData, bio: e.target.value})}
           ></textarea>

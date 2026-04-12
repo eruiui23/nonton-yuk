@@ -42,9 +42,10 @@ export default function LoginForm() {
 
       router.push('/');
       
-    } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setErrorMsg(error.response.data.message);
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      if (err.response?.data?.message) {
+        setErrorMsg(err.response.data.message);
       } else {
         setErrorMsg('Terjadi kesalahan pada server. Coba lagi nanti.');
       }
@@ -54,9 +55,9 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="card-body" onSubmit={handleLogin}>
+    <form className="card-body p-8" onSubmit={handleLogin}>
       {errorMsg && (
-        <div className="alert alert-error shadow-sm text-sm p-3 rounded-lg">
+        <div className="alert alert-error shadow-sm text-sm p-3 rounded-2xl">
           <span>{errorMsg}</span>
         </div>
       )}
@@ -68,7 +69,7 @@ export default function LoginForm() {
         <input
           type="email"
           placeholder="email@contoh.com"
-          className="input input-bordered"
+          className="input input-bordered input-lg"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -82,7 +83,7 @@ export default function LoginForm() {
         <input
           type="password"
           placeholder="********"
-          className="input input-bordered"
+          className="input input-bordered input-lg"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -92,7 +93,7 @@ export default function LoginForm() {
       <div className="form-control mt-6">
         <button 
           type="submit" 
-          className="btn btn-primary"
+          className="btn btn-primary btn-lg w-full"
           disabled={isLoading}
         >
           {isLoading ? <span className="loading loading-spinner"></span> : 'Masuk'}
