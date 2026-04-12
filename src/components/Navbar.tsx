@@ -61,7 +61,7 @@ export default function Navbar() {
               </li>
 
               <li>
-                <Link href="/profile" className="py-3 font-medium">👤 Profil Saya & Watchlist</Link>
+                <Link href={`/users/${user?.id}`} className="py-3 font-medium">👤 Profil Saya</Link>
               </li>
 
               {/* Tambahan Menu KHUSUS ADMIN */}
