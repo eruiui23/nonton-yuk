@@ -1,10 +1,12 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware'; 
+import { persist } from 'zustand/middleware';
 
 interface User {
-  id: number;
-  name: string;
+  id: string;
+  username: string;
   email: string;
+  display_name: string;
+  bio: string;
   role: string; 
 }
 
@@ -36,7 +38,7 @@ export const useAuthStore = create<AuthState>()(
       }),
     }),
     {
-      name: 'auth-storage', 
+      name: 'auth-storage',
     }
   )
 );

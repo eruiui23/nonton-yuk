@@ -1,0 +1,1646 @@
+openapi: 3.0.0
+info:
+  title: Film Management
+  version: 1.0.0
+  description: ''
+servers:
+  - url: '{{URL}}'
+paths:
+  /api/v1/auth/register:
+    post:
+      summary: Register
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 08:02:00 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '216'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      username:
+                        type: string
+                      email:
+                        type: string
+                        format: email
+                      display_name:
+                        type: string
+                      bio:
+                        type: string
+              example:
+                success: true
+                message: failed register account
+                data:
+                  id: 32a385b9-ba3e-46e1-aa38-bbf898aa9edc
+                  username: azka rizqullah
+                  email: azkarizqullah929@gmail.com
+                  display_name: Azkuun
+                  bio: Aku Sigma boy
+        '409':
+          description: Already Exist
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 08:01:30 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '107'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  error:
+                    type: string
+              example:
+                code: 0
+                success: false
+                message: failed register account
+                error: user with this email already exist
+      tags:
+        - Auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                display_name:
+                  type: string
+                bio:
+                  type: string
+            example:
+              username: azka rizqullah
+              email: azkarizqullah125@gmail.com
+              password: Password.1
+              display_name: Azkuun
+              bio: Aku Sigma boy
+  /api/v1/auth/login:
+    post:
+      summary: Login
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 08:10:59 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '334'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                      role:
+                        type: string
+              example:
+                success: true
+                message: success login
+                data:
+                  token: >-
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF0bWluQGVtYWlsLmNvbSIsImV4cCI6MTc0NTIyMzA1OSwiaXNzIjoiRmlsbSBNYW5hZ2VtZW50Iiwicm9sZSI6IkFETUlOIiwidXNlcl9pZCI6ImExYTJiNDczLWYzOTgtNDQ4OS1iN2VmLTY5ODRiNjBlNGYxMCJ9.igelKg3yF69t3bu8kwhIRigNSI8vIxso9JePUEb9sKw
+                  role: ADMIN
+      tags:
+        - Auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example: "// {\r\n//     \"email\":\"atmin@email.com\",\r\n//     \"password\":\"myatmin123\"\r\n// }\r\n{\r\n    \"email\":\"azkarizqullah127@gmail.com\",\r\n    \"password\":\"Password.1\"\r\n}\r\n"
+  /api/v1/auth/me:
+    get:
+      summary: Get Me
+      responses:
+        '200':
+          description: Get Me
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 08:12:21 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '243'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      personal_info:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          username:
+                            type: string
+                          email:
+                            type: string
+                            format: email
+                          display_name:
+                            type: string
+                          bio:
+                            type: string
+                          role:
+                            type: string
+              example:
+                success: true
+                message: success get me
+                data:
+                  personal_info:
+                    id: a1a2b473-f398-4489-b7ef-6984b60e4f10
+                    username: admint rpl
+                    email: atmin@email.com
+                    display_name: akuatmin
+                    bio: aku adalah atmin sigma skibidi
+                    role: ADMIN
+      tags:
+        - Auth
+      security:
+        - BearerAuth: []
+  /api/v1/users/{id}:
+    get:
+      summary: Get Detail User
+      responses:
+        '200':
+          description: Get Detail User
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Mon, 21 Apr 2025 01:20:15 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '622'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      username:
+                        type: string
+                      display_name:
+                        type: string
+                      bio:
+                        type: string
+                      film_lists:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            film_title:
+                              type: string
+                            list_status:
+                              type: string
+                      reviews:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            film:
+                              type: string
+                            rating:
+                              type: integer
+                            comment:
+                              type: string
+              example:
+                success: true
+                message: success get detail user
+                data:
+                  id: ae6f88a8-f9b7-45d2-9e2d-8e80fe87affe
+                  username: azka rizqullah
+                  display_name: Azkuun
+                  bio: Aku Sigma boy
+                  film_lists:
+                    - film_title: Tung Tung Sahur Memakan Sapi
+                      list_status: watching
+                  reviews:
+                    - film: Tung Tung Sahur Memakan Sapi
+                      rating: 9
+                      comment: bagus sekali tung tung sahurnya kelihatan realistik
+                    - film: Tung Tung Sahur Memakan Sapi
+                      rating: 9
+                      comment: bagus sekali tung tung sahurnya kelihatan realistik
+                    - film: Tung Tung Sahur Memakan Sapi
+                      rating: 8
+                      comment: bagus sekali tung tung sahurnya kelihatan realistik
+      tags:
+        - User
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: ae6f88a8-f9b7-45d2-9e2d-8e80fe87affe
+  /api/v1/genres:
+    post:
+      summary: Create Genre
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 09:38:27 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '119'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+              example:
+                success: true
+                message: success create genre
+                data:
+                  id: c2470a1e-a26d-4571-b515-30afd2d8e02c
+                  name: cartoon
+        '403':
+          description: Role Not Allowed
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 09:40:12 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '76'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  error:
+                    type: string
+              example:
+                success: false
+                message: user not authorized
+                error: role not allowed
+      tags:
+        - Genre
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+            example:
+              name: cartoon
+    get:
+      summary: Get All Genre
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 09:43:54 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '622'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+              example:
+                success: true
+                message: success get all genre
+                data:
+                  - id: b8aa12a7-0474-4044-ae17-d8875c9350b4
+                    name: horror
+                  - id: 4c57d4b2-613d-4160-8175-2c98b1e4d44c
+                    name: thriller
+                  - id: 1dbbe6c6-fa67-43e4-a89d-f9a7783df8d3
+                    name: comedy
+                  - id: 688bf268-029e-4e5e-a9ef-1a536b8af5ca
+                    name: action
+                  - id: 4ff613ef-7daa-44bd-b514-56999a8283cd
+                    name: horror
+                  - id: c7459746-f093-4a02-96ee-487dbb5e520f
+                    name: thriller
+                  - id: ee80b8b6-2f66-4bc9-9a8e-2cb9154ff794
+                    name: comedy
+                  - id: 8367029e-4ed0-4d69-9c6a-3ae91de9d528
+                    name: action
+                  - id: c2470a1e-a26d-4571-b515-30afd2d8e02c
+                    name: cartoon
+      tags:
+        - Genre
+  /api/v1/genres/admin:
+    get:
+      summary: Get All Genre Paginated
+      parameters:
+        - name: take
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 09:43:22 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '710'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  meta:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        take:
+                          type: integer
+                        page:
+                          type: integer
+                        total_data:
+                          type: integer
+                        total_page:
+                          type: integer
+                        sort:
+                          type: string
+                        sort_by:
+                          type: string
+              example:
+                success: true
+                message: success get all genre
+                data:
+                  - id: 1dbbe6c6-fa67-43e4-a89d-f9a7783df8d3
+                    name: comedy
+                  - id: 4c57d4b2-613d-4160-8175-2c98b1e4d44c
+                    name: thriller
+                  - id: 4ff613ef-7daa-44bd-b514-56999a8283cd
+                    name: horror
+                  - id: 688bf268-029e-4e5e-a9ef-1a536b8af5ca
+                    name: action
+                  - id: 8367029e-4ed0-4d69-9c6a-3ae91de9d528
+                    name: action
+                  - id: b8aa12a7-0474-4044-ae17-d8875c9350b4
+                    name: horror
+                  - id: c2470a1e-a26d-4571-b515-30afd2d8e02c
+                    name: cartoon
+                  - id: c7459746-f093-4a02-96ee-487dbb5e520f
+                    name: thriller
+                  - id: ee80b8b6-2f66-4bc9-9a8e-2cb9154ff794
+                    name: comedy
+                meta:
+                  - take: 10
+                    page: 1
+                    total_data: 9
+                    total_page: 1
+                    sort: asc
+                    sort_by: id
+      tags:
+        - Genre
+      security:
+        - BearerAuth: []
+  /api/v1/genres/{id}:
+    put:
+      summary: Update Genre
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 09:46:10 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '117'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+              example:
+                success: true
+                message: success update genre
+                data:
+                  id: b8aa12a7-0474-4044-ae17-d8875c9350b4
+                  name: funny
+      tags:
+        - Genre
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+            example:
+              name: funny
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: b8aa12a7-0474-4044-ae17-d8875c9350b4
+  /api/v1/films:
+    post:
+      summary: Create New Film
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 11:01:15 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '105'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+              example:
+                success: true
+                message: success create new film
+                data:
+                  id: 2279d16a-2fd1-4b7c-beaf-35e535a287a9
+      tags:
+        - Film
+      security:
+        - BearerAuth: []
+    get:
+      summary: Get All Film
+      parameters:
+        - name: take
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: filter_by
+          in: query
+          schema:
+            type: string
+          example: title
+        - name: filter
+          in: query
+          schema:
+            type: string
+          example: tung tung
+      responses:
+        '200':
+          description: Get All Film
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Mon, 21 Apr 2025 00:51:45 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '491'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        airing_status:
+                          type: string
+                        total_episodes:
+                          type: integer
+                        release_date:
+                          type: string
+                          format: date-time
+                        average_rating:
+                          type: integer
+                  meta:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        take:
+                          type: integer
+                        page:
+                          type: integer
+                        total_data:
+                          type: integer
+                        total_page:
+                          type: integer
+                        sort:
+                          type: string
+                        sort_by:
+                          type: string
+                        filter:
+                          type: string
+                        filter_by:
+                          type: string
+              example:
+                success: true
+                message: success get list film
+                data:
+                  - title: Tung Tung Sahur Memakan Sapi
+                    airing_status: airing
+                    total_episodes: 12
+                    release_date: '2024-01-02T15:04:00+07:00'
+                    average_rating: 9
+                  - title: Tung Tung Sahur Memakan Sapi
+                    airing_status: not_yet_aired
+                    total_episodes: 12
+                    release_date: '2024-01-02T15:04:00+07:00'
+                    average_rating: 0
+                meta:
+                  - take: 10
+                    page: 1
+                    total_data: 2
+                    total_page: 1
+                    sort: asc
+                    sort_by: id
+                    filter: tung tung
+                    filter_by: title
+      tags:
+        - Film
+  /api/v1/films/{id}:
+    get:
+      summary: Get Detail FIlm
+      responses:
+        '200':
+          description: success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Mon, 21 Apr 2025 01:12:48 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '585'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      title:
+                        type: string
+                      synopsis:
+                        type: string
+                      airing_status:
+                        type: string
+                      total_episodes:
+                        type: integer
+                      release_date:
+                        type: string
+                        format: style
+                      images:
+                        type: array
+                        items:
+                          type: string
+                      genres:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                      average_rating:
+                        type: number
+              example:
+                success: true
+                message: success get detail film
+                data:
+                  id: 2279d16a-2fd1-4b7c-beaf-35e535a287a9
+                  title: Tung Tung Sahur Memakan Sapi
+                  synopsis: tung tugn gtugntugntugntugutgntugngtungutn
+                  airing_status: airing
+                  total_episodes: 12
+                  release_date: '2024-01-02 15:04:00'
+                  images:
+                    - >-
+                      film-tung-tung-sahur-memakan-sapi-01JS9DR40HCP76EFTJTKJMMYPD.png
+                    - >-
+                      film-tung-tung-sahur-memakan-sapi-01JS9DR40HCP76EFTJTKRN4PFF.png
+                  genres:
+                    - id: b8aa12a7-0474-4044-ae17-d8875c9350b4
+                      name: funny
+                    - id: 4c57d4b2-613d-4160-8175-2c98b1e4d44c
+                      name: thriller
+                  average_rating: 8.67
+      tags:
+        - Film
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 2279d16a-2fd1-4b7c-beaf-35e535a287a9
+  /api/v1/film-lists:
+    post:
+      summary: Create Film List
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 13:16:05 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '53'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+              example:
+                success: true
+                message: success create film list
+        '400':
+          description: not aired yet
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 13:16:56 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '85'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  error:
+                    type: string
+              example:
+                success: false
+                message: failed create film list
+                error: film is not aired yet
+      tags:
+        - Film List
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                film_id:
+                  type: string
+                list_status:
+                  type: string
+            example:
+              film_id: 3a30fbf0-c160-432a-b5e8-fa870d44a437
+              list_status: watching
+  /api/v1/film-lists/{id}:
+    patch:
+      summary: Update Visibility
+      responses:
+        '200':
+          description: Update Visibility
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Mon, 21 Apr 2025 01:32:09 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '53'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+              example:
+                success: true
+                message: success update film list
+      tags:
+        - Film List
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                visibility:
+                  type: string
+            example:
+              visibility: public
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: de5368bc-cec7-4b55-afa0-8e5391f19533
+  /api/v1/reviews:
+    post:
+      summary: Create Review
+      responses:
+        '200':
+          description: success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 15:20:55 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '50'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+              example:
+                success: true
+                message: success create review
+      tags:
+        - Review
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                film_id:
+                  type: string
+                rating:
+                  type: integer
+                comment:
+                  type: string
+            example:
+              film_id: 2279d16a-2fd1-4b7c-beaf-35e535a287a9
+              rating: 8
+              comment: bagus sekali tung tung sahurnya kelihatan realistik
+  /api/v1/reactions:
+    post:
+      summary: Create Reaction
+      responses:
+        '200':
+          description: success
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 16:02:10 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '52'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+              example:
+                success: true
+                message: success create reaction
+      tags:
+        - Reaction
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                review_id:
+                  type: string
+                status:
+                  type: string
+            example:
+              review_id: b8d4cae2-5926-48a4-ac02-b331ef159d33
+              status: like
+  /api/v1/reactions/{id}:
+    put:
+      summary: Update Reaction
+      responses: {}
+      tags:
+        - Reaction
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+            example:
+              status: like
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: e1004ff9-b3ec-447e-9753-4528f47f6221
+  /api/ping:
+    get:
+      summary: Ping
+      responses:
+        '200':
+          description: Ping
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+              example: 'true'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              example: >-
+                Origin, Content-Type, api_key, Content-Length, Accept-Encoding,
+                X-CSRF-Token, Authorization
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              example: POST, GET, OPTIONS, PATCH, PUT, DELETE, UPDATE
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+              example: Content-Length
+            Access-Control-Max-Age:
+              schema:
+                type: integer
+              example: '86400'
+            Cache-Control:
+              schema:
+                type: string
+              example: no-cache
+            Date:
+              schema:
+                type: string
+              example: Sun, 20 Apr 2025 07:58:52 GMT
+            Content-Length:
+              schema:
+                type: integer
+              example: '18'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: pong
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
