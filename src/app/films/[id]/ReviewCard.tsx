@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'; // <--- Wajib import ini buat pindah halaman
 import api from '../../../services/api';
+import { Star, ThumbsUp, ThumbsDown } from 'lucide-react';
 
 interface Review {
   id: string;
@@ -98,7 +99,7 @@ export default function ReviewCard({ review, token, onRefresh }: ReviewCardProps
               >
                 {authorName}
               </Link>
-              <div className="badge badge-warning badge-sm font-bold shadow-sm">⭐ {review.rating}</div>
+              <div className="badge badge-warning badge-sm font-bold shadow-sm"><Star className="w-3 h-3 fill-current inline-block mr-1" />{review.rating}</div>
             </div>
             <p className="text-base-content/80 text-sm">"{review.comment}"</p>
           </div>
@@ -110,14 +111,14 @@ export default function ReviewCard({ review, token, onRefresh }: ReviewCardProps
             disabled={isLoading}
             className={`btn btn-xs sm:btn-sm gap-2 shadow-sm ${myReaction?.status === 'like' ? 'btn-success text-white' : 'btn-outline btn-success'}`}
           >
-            👍 {review.likes}
+            <ThumbsUp className="w-4 h-4" /> {review.likes}
           </button>
           <button 
             onClick={() => handleReact('dislike')}
             disabled={isLoading}
             className={`btn btn-xs sm:btn-sm gap-2 shadow-sm ${myReaction?.status === 'dislike' ? 'btn-error text-white' : 'btn-outline btn-error'}`}
           >
-            👎 {review.dislikes}
+            <ThumbsDown className="w-4 h-4" /> {review.dislikes}
           </button>
         </div>
       </div>

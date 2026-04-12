@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Star } from 'lucide-react';
 
 interface Film {
     id: string;
@@ -40,7 +41,7 @@ export default function FilmCard({ film }: { film: Film }) {
                     <div className="flex items-center justify-between">
                         <span className="badge badge-outline">{film.total_episodes} Eps</span>
                         <span className="flex items-center gap-2 text-warning font-semibold">
-                            ⭐ {film.average_rating > 0 ? film.average_rating : 'N/A'}
+                            <Star className="w-4 h-4 fill-current" /> {film.average_rating > 0 ? film.average_rating : 'N/A'}
                         </span>
                     </div>
                 </div>

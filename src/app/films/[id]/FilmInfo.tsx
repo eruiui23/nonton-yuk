@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Star } from 'lucide-react';
 
 interface FilmInfoProps {
     film: any;
@@ -40,7 +41,7 @@ export default function FilmInfo({ film }: FilmInfoProps) {
 
                 <div className="flex flex-wrap items-center gap-3 mb-6">
                     <div className="badge badge-lg badge-warning font-bold gap-1">
-                        ⭐ {film.average_rating > 0 ? film.average_rating : 'N/A'}
+                        <Star className="w-4 h-4 fill-current" /> {film.average_rating > 0 ? film.average_rating : 'N/A'}
                     </div>
                     <div className="badge badge-lg badge-outline">{film.total_episodes} Episode</div>
                     {film.genres?.map((genre: any) => (

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   description: 'Platform manajemen, katalog, dan ulasan film terbaik untukmu.',
   icons: {
-    icon: '🎬', // Bonus: Bikin icon tab browser jadi emoji clapperboard!
+    icon: '/favicon.ico', // Bonus: Bikin icon tab browser jadi emoji clapperboard!
   }
 };
 

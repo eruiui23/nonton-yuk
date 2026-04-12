@@ -1,5 +1,8 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, sunset;
+}
 
 :root {
   --background: #f8fafc;
@@ -27,8 +30,8 @@
 @layer base {
   body {
     min-height: 100vh;
-    background: radial-gradient(circle at top, rgba(59,130,246,0.16), transparent 26%),
-      radial-gradient(circle at bottom right, rgba(16,185,129,0.12), transparent 24%),
+    background: radial-gradient(circle at top, rgba(59, 130, 246, 0.16), transparent 26%),
+      radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.12), transparent 24%),
       var(--background);
     color: var(--foreground);
     font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,

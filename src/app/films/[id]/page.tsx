@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { useAuthStore } from '../../../store/useAuthStore';
 import api from '../../../services/api';
+import { MessageCircle } from 'lucide-react';
 
 import FilmInfo from './FilmInfo';
 import WatchlistAction from './WatchlistAction';
@@ -61,7 +62,7 @@ export default function FilmDetailPage() {
         {/* KOLOM KIRI: Ulasan Pengguna (Daftar ulasan dari orang lain) */}
         <div className="lg:col-span-2">
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            💬 Ulasan Komunitas <div className="badge badge-ghost opacity-50">{film.reviews?.length || 0}</div>
+            <MessageCircle className="w-6 h-6" /> Ulasan Komunitas <div className="badge badge-ghost opacity-50">{film.reviews?.length || 0}</div>
           </h2>
           
           {film.reviews && film.reviews.length > 0 ? (

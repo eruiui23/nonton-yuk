@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import api from '../../services/api';
+import { Clapperboard } from 'lucide-react';
 
 export default function FilmForm({ token }: { token: string }) {
   const [genres, setGenres] = useState<{ id: string, name: string }[]>([]);
@@ -75,7 +76,7 @@ export default function FilmForm({ token }: { token: string }) {
   return (
     <div className="card bg-base-100 shadow-xl border border-base-200">
       <div className="card-body">
-        <h2 className="card-title text-2xl mb-4 flex items-center gap-2">🎬 Buat Film Baru</h2>
+        <h2 className="card-title text-2xl mb-4 flex items-center gap-2"><Clapperboard className="w-6 h-6" /> Buat Film Baru</h2>
         
         {toast && (
           <div className={`alert ${toast.type === 'success' ? 'alert-success' : 'alert-error'} text-white shadow-sm mb-4`}>
