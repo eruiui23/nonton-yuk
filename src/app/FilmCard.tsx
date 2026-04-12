@@ -13,44 +13,41 @@ interface Film {
 
 export default function FilmCard({ film }: { film: Film }) {
     return (
-        <div className="card bg-base-100 hover:-translate-y-1 transform transition-all duration-300 overflow-hidden border border-base-200 shadow-xl">
-            <figure className="relative h-80 w-full overflow-hidden bg-slate-100">
-                {film.imageUrl ? (
-                    <Image
-                        src={`https://film-management-api.labse.id/api/static/${film.imageUrl}`}
-                        alt={`Poster ${film.title}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-base-content/30 font-bold text-xl px-4 text-center bg-base-200">
-                        No Image
-                    </div>
-                )}
-                <div className="absolute top-4 left-4 badge badge-secondary shadow-lg z-10 font-semibold uppercase text-[10px]">
-                    {film.airing_status.replace('_', ' ')}
+        <Link
+            href={`/films/${film.id}`}
+            className="group block relative w-full aspect-[2/3] rounded-lg overflow-hidden border border-base-200/40 bg-base-300/50 hover:border-primary hover:ring-2 hover:ring-primary transition-all duration-300 shadow-sm cursor-pointer"
+        >
+            {film.imageUrl ? (
+                <Image
+                    src={`https://film-management-api.labse.id/api/static/${film.imageUrl}`}
+                    alt={`Poster ${film.title}`}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover transition-transform duration-500 "
+                />
+            ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center bg-base-200">
+                    <span className="font-bold text-sm mb-1 opacity-60 line-clamp-3">{film.title}</span>
+                    <span className="text-xs text-base-content/40 font-medium">No Image</span>
                 </div>
-            </figure>
+            )}
 
-            <div className="card-body p-6">
-                <h2 className="text-xl font-semibold line-clamp-2" title={film.title}>
-                    {film.title}
-                </h2>
-                <div className="mt-4 flex flex-col gap-3 text-sm text-base-content/75">
-                    <div className="flex items-center justify-between">
-                        <span className="badge badge-outline">{film.total_episodes} Eps</span>
-                        <span className="flex items-center gap-2 text-warning font-semibold">
-                            <Star className="w-4 h-4 fill-current" /> {film.average_rating > 0 ? film.average_rating : 'N/A'}
+            {/* Aksi Overlay saat di-hover (Mirip Letterboxd style) */}
+            <div className="absolute inset-0 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none p-3 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                {/* Info Overlay (Titile, Eps, Rating) */}
+                <div className="w-full text-white pb-1 backdrop-blur-none">
+                    <h3 className="font-bold text-sm sm:text-base leading-tight mb-2 line-clamp-2 drop-shadow-md">
+                        {film.title}
+                    </h3>
+                    <div className="flex items-center justify-between text-xs font-semibold drop-shadow-md">
+                        <span className="bg-black/60 px-2 py-1 rounded-md">{film.total_episodes} Eps</span>
+                        <span className="flex items-center gap-1 text-warning bg-black/60 px-2 py-1 rounded-md">
+                            <Star className="w-3.5 h-3.5 fill-warning" />
+                            {film.average_rating > 0 ? film.average_rating : 'N/A'}
                         </span>
                     </div>
                 </div>
-                <div className="card-actions justify-end mt-6">
-                    <Link href={`/films/${film.id}`} className="btn btn-primary btn-sm w-full md:w-auto">
-                        Lihat Detail
-                    </Link>
-                </div>
             </div>
-        </div>
+        </Link>
     );
 }

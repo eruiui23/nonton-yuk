@@ -30,11 +30,11 @@ export default function Navbar() {
   if (!isMounted) return <div className="navbar bg-base-100 shadow-md h-16"></div>;
 
   return (
-    <div className="navbar sticky top-0 z-50 border-b border-base-200/80 bg-base-100/95 backdrop-blur-xl px-4 sm:px-8 shadow-sm">
+    <div className="navbar sticky top-0 z-50 border-b border-base-200/80 bg-base-100/95 backdrop-blur-xl px-4 sm:px-8 shadow-sm h-20">
       <div className="flex-1 gap-4">
         <Link href="/" className="inline-flex items-center gap-2 text-2xl font-extrabold tracking-tight text-primary">
-          <span className="inline-block rounded-xl bg-primary/15 px-3 py-1 text-base-content">🎬</span>
-          NontonYuk
+          {/* <span className="inline-block rounded-xl bg-primary/15 px-3 py-1 text-base-content"></span> */}
+          <span className="font-bitcount font-normal tracking-normal text-5xl text-white">Nonton<span className="text-primary">Yuk</span></span>
         </Link>
       </div>
       <div className="hidden md:flex gap-2">

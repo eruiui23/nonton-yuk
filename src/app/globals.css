@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double&display=swap');
 @import "tailwindcss";
+
+@layer utilities {
+  .font-bitcount {
+    font-family: "Bitcount Grid Double", sans-serif;
+  }
+}
 
 @plugin "daisyui" {
   themes: dark --default;
 }
+
+
 
 @plugin "daisyui/theme" {
   name: "dark";
@@ -13,17 +22,17 @@
   --color-base-200: oklch(20% 0 0);
   --color-base-300: oklch(26% 0 0);
   --color-base-content: oklch(97% 0 0);
-  --color-primary: oklch(70% 0.14 182.503);
+  --color-primary: oklch(90% 0.182 98.111);
   --color-primary-content: oklch(25% 0.09 281.288);
-  --color-secondary: oklch(86% 0.005 56.366);
+  --color-secondary: oklch(98% 0.001 106.423);
   --color-secondary-content: oklch(14% 0.004 49.25);
-  --color-accent: oklch(86% 0.127 207.078);
+  --color-accent: oklch(85% 0.199 91.936);
   --color-accent-content: oklch(30% 0.056 229.695);
   --color-neutral: oklch(14% 0 0);
   --color-neutral-content: oklch(98% 0 0);
   --color-info: oklch(58% 0.158 241.966);
   --color-info-content: oklch(97% 0.013 236.62);
-  --color-success: oklch(60% 0.118 184.704);
+  --color-success: oklch(72% 0.219 149.579);
   --color-success-content: oklch(98% 0.014 180.72);
   --color-warning: oklch(64% 0.222 41.116);
   --color-warning-content: oklch(98% 0.016 73.684);
@@ -31,47 +40,21 @@
   --color-error-content: oklch(97% 0.013 17.38);
   --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
-  --radius-box: 0rem;
+  --radius-box: 0.5rem;
   --size-selector: 0.25rem;
-  --size-field: 0.25rem;
+  --size-field: 0.21875rem;
   --border: 1px;
   --depth: 0;
   --noise: 1;
 }
 
 
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  color-scheme: light;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --rounded-box: 1.75rem;
-  --rounded-btn: 1rem;
-  --rounded-badge: 9999px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #020617;
-    --foreground: #e2e8f0;
-  }
-}
 
 @layer base {
   body {
     min-height: 100vh;
-    background: radial-gradient(circle at top, rgba(59, 130, 246, 0.16), transparent 26%),
-      radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.12), transparent 24%),
-      var(--background);
-    color: var(--foreground);
-    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", sans-serif;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   .glass-card {

@@ -39,7 +39,7 @@ function HomeContent() {
       
       const params: Record<string, string | number> = {
         page: page,
-        take: 8,
+        take: 12,
       };
 
       // Jika ada pencarian teks
@@ -111,14 +111,14 @@ function HomeContent() {
       )}
 
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="h-96 w-full rounded-[1.5rem] bg-base-200 animate-pulse"></div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
+          {[...Array(12)].map((_, i) => (
+            <div key={i} className="h-auto aspect-[2/3] w-full rounded-lg bg-base-200/50 animate-pulse border border-base-200/30"></div>
           ))}
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
             {films.map((film) => <FilmCard key={film.id} film={film} />)}
           </div>
           
