@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import api from '../../services/api';
+import GenreSearch from './GenreSearch';
+import GenreGrid from './GenreGrid';
 
 interface Genre {
   id: string;
@@ -45,36 +46,12 @@ export default function PublicGenresPage() {
         </p>
       </div>
 
-      {/* Bar Pencarian Genre */}
-      <div className="max-w-md mx-auto mb-10">
-        <input 
-          type="text" 
-          placeholder="Cari genre... (misal: action, komedi)" 
-          className="input input-bordered input-primary w-full shadow-sm rounded-full px-6"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
+      <GenreSearch search={search} onSearchChange={setSearch} />
 
       {isLoading ? (
         <div className="flex justify-center py-20"><span className="loading loading-spinner loading-lg text-primary"></span></div>
       ) : filteredGenres.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filteredGenres.map((genre) => (
-            <Link 
-              key={genre.id} 
-              // Lempar user ke home dengan membawa parameter genreId & nama genre
-              href={`/?genreId=${genre.id}&genreName=${genre.name}`}
-              className="card bg-base-100 border border-base-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary transition-all cursor-pointer group"
-            >
-              <div className="card-body items-center justify-center p-6 text-center">
-                <span className="text-lg font-bold capitalize group-hover:text-primary transition-colors">
-                  {genre.name}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <GenreGrid genres={filteredGenres} />
       ) : (
         <div className="text-center py-20 text-base-content/50 font-bold">
           Genre tidak ditemukan.

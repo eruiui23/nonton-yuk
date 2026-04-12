@@ -6,6 +6,7 @@ import { useAuthStore } from '../../../store/useAuthStore';
 import api from '../../../services/api';
 import UserHeader from './UserHeader';
 import UserWatchlist from './UserWatchlist';
+import ProfileReviews from './ProfileReviews';
 import { Clapperboard, Star } from 'lucide-react';
 
 export default function UnifiedProfilePage() {
@@ -71,25 +72,7 @@ export default function UnifiedProfilePage() {
           <Star className="w-7 h-7 text-warning fill-warning" />
           Ulasan Terbaru
         </h2>
-        {profile.reviews && profile.reviews.length > 0 ? (
-          <div className="flex flex-col gap-4">
-            {profile.reviews.map((rev: any, i: number) => (
-              <div key={i} className="card bg-base-100 border border-base-200 shadow-sm">
-                <div className="card-body p-5">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-bold text-primary">{rev.film || "Film"}</span>
-                    <span className="badge badge-warning font-bold flex items-center gap-1 px-3 py-3">
-                      <Star className="w-3 h-3 fill-current" /> {rev.rating}/10
-                    </span>
-                  </div>
-                  <p className="text-sm opacity-80 italic">"{rev.comment}"</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="p-8 bg-base-200 rounded-xl text-center opacity-50 italic">Belum ada ulasan.</div>
-        )}
+        <ProfileReviews reviews={profile.reviews} />
       </div>
     </div>
   );
