@@ -62,35 +62,31 @@ export default function LoginForm() {
         </div>
       )}
 
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Email</span>
-        </label>
+      <div className="flex flex-col gap-2 mb-4">
+        <label className="font-semibold text-base-content/90">Email</label>
         <input
           type="email"
           placeholder="email@contoh.com"
-          className="input input-bordered input-lg"
+          className="input input-bordered input-lg w-full"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </div>
       
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Password</span>
-        </label>
+      <div className="flex flex-col gap-2 mb-6">
+        <label className="font-semibold text-base-content/90">Password</label>
         <input
           type="password"
           placeholder="********"
-          className="input input-bordered input-lg"
+          className="input input-bordered input-lg w-full"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
       
-      <div className="form-control mt-6">
+      <div className="mt-2">
         <button 
           type="submit" 
           className="btn btn-primary btn-lg w-full"

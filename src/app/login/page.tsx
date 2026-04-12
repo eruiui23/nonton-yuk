@@ -27,7 +27,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className="glass-card border border-base-200 shadow-2xl">
+          <div className="card bg-base-100 border border-base-200 shadow-2xl rounded-[1.75rem]">
             <LoginForm />
           </div>
         </div>

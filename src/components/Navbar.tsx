@@ -69,7 +69,7 @@ export default function Navbar() {
               </li>
 
               <li>
-                <Link href={`/users/${user?.id}`} className="py-3 font-medium">👤 Profil Saya</Link>
+                <Link href={`/users/${user?.id}`} className="py-3 font-medium">Profil</Link>
               </li>
 
               {/* Tambahan Menu KHUSUS ADMIN */}
@@ -83,7 +83,7 @@ export default function Navbar() {
 
               <li>
                 <button onClick={handleLogout} className="py-3 text-error font-bold">
-                  🚪 Keluar (Logout)
+                  Logout
                 </button>
               </li>
             </ul>

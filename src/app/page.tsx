@@ -88,7 +88,7 @@ function HomeContent() {
               Jelajahi katalog film, lihat review terkini, dan kelola watchlist dengan tampilan yang bersih dan responsif.
             </p>
           </div>
-          <div className="rounded-[1.75rem] bg-base-100/95 p-8 shadow-xl border border-base-200/80 backdrop-blur-xl">
+          <div className="rounded-[1.75rem] bg-base-100 p-8 shadow-xl border border-base-200 backdrop-blur-xl text-base-content">
             <h2 className="text-xl font-semibold mb-4">Cari film favoritmu</h2>
             <SearchHeader search={search} setSearch={setSearch} setPage={setPage} />
           </div>

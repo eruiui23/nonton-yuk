@@ -13,7 +13,7 @@ interface Film {
 
 export default function FilmCard({ film }: { film: Film }) {
     return (
-        <div className="card glass-card hover:-translate-y-1 transform transition-all duration-300 overflow-hidden border border-base-200">
+        <div className="card bg-base-100 hover:-translate-y-1 transform transition-all duration-300 overflow-hidden border border-base-200 shadow-xl">
             <figure className="relative h-80 w-full overflow-hidden bg-slate-100">
                 {film.imageUrl ? (
                     <Image
