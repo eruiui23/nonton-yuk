@@ -6,7 +6,6 @@ import { useAuthStore } from '../../../store/useAuthStore';
 import api from '../../../services/api';
 import UserHeader from './UserHeader';
 import UserWatchlist from './UserWatchlist';
-import FilmPoster from './FilmPoster';
 import { Clapperboard, Star } from 'lucide-react';
 
 export default function UnifiedProfilePage() {
@@ -75,21 +74,15 @@ export default function UnifiedProfilePage() {
         {profile.reviews && profile.reviews.length > 0 ? (
           <div className="flex flex-col gap-4">
             {profile.reviews.map((rev: any, i: number) => (
-              <div key={i} className="card bg-base-100 border border-base-200 shadow-sm flex-row overflow-hidden h-32">
-                
-                {/* POSTER ULASAN */}
-                <div className="relative w-20 h-full flex-shrink-0">
-                  <FilmPoster filmTitle={rev.film} />
-                </div>
-
-                <div className="card-body p-4 flex-1 min-w-0">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-bold text-primary text-sm sm:text-base truncate mr-2">{rev.film || "Film"}</span>
-                    <span className="badge badge-warning font-bold badge-sm flex-shrink-0">
-                      <Star className="w-3 h-3 fill-current mr-1" /> {rev.rating}/10
+              <div key={i} className="card bg-base-100 border border-base-200 shadow-sm">
+                <div className="card-body p-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-bold text-primary">{rev.film || "Film"}</span>
+                    <span className="badge badge-warning font-bold flex items-center gap-1 px-3 py-3">
+                      <Star className="w-3 h-3 fill-current" /> {rev.rating}/10
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm opacity-80 italic line-clamp-3">"{rev.comment}"</p>
+                  <p className="text-sm opacity-80 italic">"{rev.comment}"</p>
                 </div>
               </div>
             ))}
