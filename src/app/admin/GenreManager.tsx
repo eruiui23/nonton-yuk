@@ -68,9 +68,9 @@ export default function GenreManager({ token }: { token: string }) {
         </div>
       )}
 
-      <div className="flex justify-between items-center bg-base-100 p-4 rounded-xl border border-base-200 shadow-sm">
-        <h2 className="text-xl font-bold">Daftar Genre</h2>
-        <button onClick={() => { setEditingGenre(null); setIsModalOpen(true); }} className="btn btn-secondary btn-sm">
+      <div className="flex justify-between items-center bg-base-200/40 backdrop-blur-md p-6 rounded-2xl border border-base-content/10 shadow-xl mb-4">
+        <h2 className="text-2xl font-black">Daftar Genre</h2>
+        <button onClick={() => { setEditingGenre(null); setIsModalOpen(true); }} className="btn btn-secondary shadow-lg">
           + Tambah Genre
         </button>
       </div>

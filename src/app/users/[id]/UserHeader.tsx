@@ -15,7 +15,7 @@ export default function UserHeader({ displayName, username, bio }: UserHeaderPro
         </div>
         <div className="text-center md:text-left">
           <h1 className="text-3xl font-bold">{displayName}</h1>
-          <p className="text-base-content/60 font-mono text-sm">@{username}</p>
+          <p className="text-base-content/80 font-mono text-sm">@{username}</p>
           <p className="mt-4 text-base-content/80 italic">
             {bio || "Pengguna ini belum menulis bio."}
           </p>

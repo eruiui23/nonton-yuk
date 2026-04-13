@@ -22,7 +22,7 @@ export default function AdminDashboard() {
       {/* Header Panel */}
       <div className="mb-10 border-b border-base-300 pb-6">
         <h1 className="text-4xl font-bold tracking-tight">Panel Admin</h1>
-        <p className="text-base-content/70 mt-2">
+        <p className="text-base-content/90 mt-2">
           Selamat datang, <span className="font-semibold text-primary">{user.display_name}</span>. Kendalikan sistem dari sini.
         </p>
       </div>

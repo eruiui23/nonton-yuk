@@ -91,12 +91,12 @@ function HomeContent() {
               Eksplorasi Dunia <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Perfilman.</span>
             </h1>
-            <p className="max-w-xl text-base-content/70 text-lg leading-relaxed">
+            <p className="max-w-xl text-base-content/90 text-lg leading-relaxed">
               Jelajahi ribuan judul film, saring berdasarkan genre kesukaanmu, dan temukan tontonan mahakarya untuk menemanimu hari ini.
             </p>
           </div>
           <div className="bg-base-100/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-base-content/10">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-base-content/50 mb-5 text-center lg:text-left">Cari Judul</h2>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-base-content/70 mb-5 text-center lg:text-left">Cari Judul</h2>
             <SearchHeader search={search} setSearch={setSearch} setPage={setPage} />
           </div>
         </div>
@@ -133,7 +133,7 @@ function HomeContent() {
             <div className="text-center py-20 bg-base-100 rounded-[1.75rem] mt-6 border border-dashed border-base-200 shadow-sm">
               <h3 className="text-2xl font-bold opacity-60 italic">Film tidak ditemukan...</h3>
               {genreNameFilter && (
-                <p className="mt-2 text-base-content/70">Coba hapus filter genre untuk melihat film lainnya.</p>
+                <p className="mt-2 text-base-content/90">Coba hapus filter genre untuk melihat film lainnya.</p>
               )}
             </div>
           )}

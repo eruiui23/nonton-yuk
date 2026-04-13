@@ -45,7 +45,7 @@ export default function LandingRecommended() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-4">
         <div>
           <h2 className="text-3xl md:text-5xl font-black mb-3">Rekomendasi Film</h2>
-          <p className="text-base-content/70 text-lg">Pilihan terbaik untuk mulai menonton hari ini.</p>
+          <p className="text-base-content/90 text-lg">Pilihan terbaik untuk mulai menonton hari ini.</p>
         </div>
         <Link href="/movies" className="btn btn-outline btn-md shrink-0 rounded-full px-6">Lihat Semua</Link>
       </div>

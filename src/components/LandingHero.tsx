@@ -40,7 +40,7 @@ export default function LandingHero() {
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-base-content/70 max-w-2xl mb-12 font-medium">
+        <p className="text-lg md:text-xl text-base-content/90 max-w-2xl mb-12 font-medium">
           Jelajahi ribuan film, tambahkan ke watchlist, dan baca ulasan terbaik dari komunitas Nonton Yuk!
         </p>
 
@@ -68,12 +68,12 @@ export default function LandingHero() {
           <div className="card glass-card bg-base-200/50 backdrop-blur-md p-6 rounded-3xl w-64 text-left border border-base-content/10 shadow-xl transform -rotate-6 hover:rotate-0 transition-transform cursor-default">
             <Star className="w-10 h-10 text-warning mb-4" />
             <h3 className="font-bold text-lg mb-2">Review Terpercaya</h3>
-            <p className="text-sm text-base-content/70">Baca pengalaman menonton dari user lain sebelum kamu memutuskannya.</p>
+            <p className="text-sm text-base-content/90">Baca pengalaman menonton dari user lain sebelum kamu memutuskannya.</p>
           </div>
           <div className="card glass-card bg-base-200/50 backdrop-blur-md p-6 rounded-3xl w-64 text-left border border-base-content/10 shadow-xl transform translate-y-8 hover:translate-y-4 transition-transform cursor-default">
             <Film className="w-10 h-10 text-info mb-4" />
             <h3 className="font-bold text-lg mb-2">Katalog Update</h3>
-            <p className="text-sm text-base-content/70">Rilisan terbaru dari berbagai genre bisa kamu temukan di sini.</p>
+            <p className="text-sm text-base-content/90">Rilisan terbaru dari berbagai genre bisa kamu temukan di sini.</p>
           </div>
         </div>
       </div>

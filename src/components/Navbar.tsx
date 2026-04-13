@@ -39,11 +39,11 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="hidden md:flex items-center gap-8 ml-8 mr-8">
-        <Link href="/genres" className="font-bold text-sm tracking-widest uppercase text-base-content/70 hover:text-primary transition-colors duration-300 relative group">
+        <Link href="/genres" className="font-bold text-sm tracking-widest uppercase text-base-content/90 hover:text-primary transition-colors duration-300 relative group">
           Kategori
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </Link>
-        <Link href="/movies" className="font-bold text-sm tracking-widest uppercase text-base-content/70 hover:text-primary transition-colors duration-300 relative group">
+        <Link href="/movies" className="font-bold text-sm tracking-widest uppercase text-base-content/90 hover:text-primary transition-colors duration-300 relative group">
           Film
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </Link>

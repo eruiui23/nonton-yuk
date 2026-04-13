@@ -63,7 +63,7 @@ export default function LoginForm() {
       )}
 
       <div className="flex flex-col gap-2 mb-5">
-        <label className="font-bold text-sm tracking-widest text-base-content/70 uppercase">Email</label>
+        <label className="font-bold text-sm tracking-widest text-base-content/90 uppercase">Email</label>
         <input
           type="email"
           placeholder="email@contoh.com"
@@ -75,7 +75,7 @@ export default function LoginForm() {
       </div>
       
       <div className="flex flex-col gap-2 mb-8">
-        <label className="font-bold text-sm tracking-widest text-base-content/70 uppercase">Password</label>
+        <label className="font-bold text-sm tracking-widest text-base-content/90 uppercase">Password</label>
         <input
           type="password"
           placeholder="********"

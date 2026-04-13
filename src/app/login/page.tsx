@@ -15,13 +15,13 @@ export default function LoginPage() {
             <h1 className="text-5xl md:text-6xl font-black tracking-tighter leading-tight">
               Masuk ke <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Akunmu.</span>
             </h1>
-            <p className="max-w-xl text-lg text-base-content/70 leading-relaxed mb-8">
+            <p className="max-w-xl text-lg text-base-content/90 leading-relaxed mb-8">
               Akses ribuan film, berikan ulasan, dan kelola daftar tontonan favoritmu dengan tampilan yang rapi dan elegan.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="rounded-3xl border border-base-content/5 bg-base-200/40 backdrop-blur-md p-6 shadow-xl">
                 <h3 className="font-bold tracking-wide">Fitur Utama</h3>
-                <ul className="mt-4 space-y-3 text-sm text-base-content/70 font-medium">
+                <ul className="mt-4 space-y-3 text-sm text-base-content/90 font-medium">
                   <li>✨ Watchlist Pribadi</li>
                   <li>✨ Review dan Rating</li>
                   <li>✨ Eksplorasi Cepat</li>
@@ -29,7 +29,7 @@ export default function LoginPage() {
               </div>
               <div className="rounded-3xl border border-base-content/5 bg-base-200/40 backdrop-blur-md p-6 shadow-xl">
                 <h3 className="font-bold tracking-wide">Keamanan</h3>
-                <p className="mt-3 text-sm text-base-content/70 leading-relaxed font-medium">Login aman dan super lancar dengan sistem autentikasi termodern berbasis sesi tersandikan.</p>
+                <p className="mt-3 text-sm text-base-content/90 leading-relaxed font-medium">Login aman dan super lancar dengan sistem autentikasi termodern berbasis sesi tersandikan.</p>
               </div>
             </div>
           </div>

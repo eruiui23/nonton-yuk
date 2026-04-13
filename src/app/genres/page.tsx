@@ -50,7 +50,7 @@ export default function PublicGenresPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tighter leading-tight">
             Eksplorasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Genre.</span>
           </h1>
-          <p className="text-base-content/70 text-lg leading-relaxed mb-10">
+          <p className="text-base-content/90 text-lg leading-relaxed mb-10">
             Temukan tontonan favoritmu berdasarkan genre dan langsung telusuri ribuan judul mahakarya yang menantimu.
           </p>
           <GenreSearch search={search} onSearchChange={setSearch} />
@@ -62,7 +62,7 @@ export default function PublicGenresPage() {
       ) : filteredGenres.length > 0 ? (
         <GenreGrid genres={filteredGenres} />
       ) : (
-        <div className="text-center py-20 text-base-content/50 font-bold">
+        <div className="text-center py-20 text-base-content/70 font-bold">
           Genre tidak ditemukan.
         </div>
       )}

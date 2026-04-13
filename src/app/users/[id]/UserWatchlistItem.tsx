@@ -14,16 +14,16 @@ type UserWatchlistItemProps = {
 
 export default function UserWatchlistItem({ item, isOwner, loadingId, onToggleVisibility }: UserWatchlistItemProps) {
   return (
-    <div className="card bg-base-100 border border-base-200 shadow-sm hover:border-primary/40 transition-all">
-      <div className="card-body p-4 flex-row justify-between items-center">
+    <div className="card bg-base-200/50 backdrop-blur-sm border border-base-content/10 shadow-md hover:shadow-xl hover:border-primary/50 transition-all duration-300">
+      <div className="card-body p-4 sm:p-5 flex-row justify-between items-center">
         <div>
-          <p className="font-bold line-clamp-1" title={item.film_title}>{item.film_title}</p>
-          <div className="flex gap-2 mt-1">
-            <span className="badge badge-ghost badge-xs uppercase text-[9px] font-bold">
+          <p className="font-black text-lg line-clamp-1 tracking-wide" title={item.film_title}>{item.film_title}</p>
+          <div className="flex gap-2 mt-2">
+            <span className="badge border border-base-content/20 bg-base-100/50 badge-sm uppercase text-[10px] tracking-widest font-bold">
               {item.list_status?.replace('_', ' ')}
             </span>
             {isOwner && (
-              <span className={`badge badge-xs text-[9px] font-bold ${item.visibility === 'public' ? 'badge-info' : 'badge-neutral'}`}>
+              <span className={`badge badge-sm text-[10px] tracking-widest font-bold ${item.visibility === 'public' ? 'badge-primary badge-outline text-primary' : 'border border-base-content/20 bg-base-content/10 text-base-content/90'}`}>
                 {item.visibility?.toUpperCase()}
               </span>
             )}

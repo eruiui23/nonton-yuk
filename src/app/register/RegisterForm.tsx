@@ -56,7 +56,7 @@ export default function RegisterForm() {
   return (
     <div className="card-body p-8 sm:p-10">
       <h2 className="text-3xl font-black mb-1 text-center tracking-tight">Daftar Akun User</h2>
-      <p className="text-center text-sm font-medium text-base-content/70 mb-6">
+      <p className="text-center text-sm font-medium text-base-content/90 mb-6">
         Lengkapi data di bawah ini untuk mulai menyimpan watchlist.
       </p>
 
@@ -77,7 +77,7 @@ export default function RegisterForm() {
       <form onSubmit={handleRegister} className="flex flex-col gap-4">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1 w-full">
-            <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Username</label>
+            <label className="font-bold text-xs tracking-widest text-base-content/90 uppercase pl-1">Username</label>
             <input 
               type="text" 
               placeholder="tanpa_spasi" 
@@ -89,7 +89,7 @@ export default function RegisterForm() {
           </div>
 
           <div className="flex flex-col gap-1 w-full">
-            <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Display Name</label>
+            <label className="font-bold text-xs tracking-widest text-base-content/90 uppercase pl-1">Display Name</label>
             <input 
               type="text" 
               placeholder="Nama Lengkap" 
@@ -102,7 +102,7 @@ export default function RegisterForm() {
         </div>
 
         <div className="flex flex-col gap-1 w-full">
-          <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Email</label>
+          <label className="font-bold text-xs tracking-widest text-base-content/90 uppercase pl-1">Email</label>
           <input 
             type="email" 
             placeholder="nama@email.com" 
@@ -114,7 +114,7 @@ export default function RegisterForm() {
         </div>
 
         <div className="flex flex-col gap-1 w-full">
-          <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Password</label>
+          <label className="font-bold text-xs tracking-widest text-base-content/90 uppercase pl-1">Password</label>
           <input 
             type="password" 
             placeholder="••••••••" 
@@ -127,7 +127,7 @@ export default function RegisterForm() {
         </div>
 
         <div className="flex flex-col gap-1 w-full mb-2">
-          <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Bio Profile</label>
+          <label className="font-bold text-xs tracking-widest text-base-content/90 uppercase pl-1">Bio Profile</label>
           <textarea 
             placeholder="Tulis sedikit tentang dirimu (Opsional)..." 
             className="textarea textarea-bordered textarea-md w-full bg-base-100/50 backdrop-blur-sm focus:border-secondary transition-colors h-20" 

@@ -74,7 +74,7 @@ export default function FilmForm({ token }: { token: string }) {
   };
 
   return (
-    <div className="card bg-base-100 shadow-xl border border-base-200">
+    <div className="card bg-base-200/40 backdrop-blur-xl shadow-2xl border border-base-content/10">
       <div className="card-body">
         <h2 className="card-title text-2xl mb-4 flex items-center gap-2"><Clapperboard className="w-6 h-6" /> Buat Film Baru</h2>
         
@@ -86,23 +86,23 @@ export default function FilmForm({ token }: { token: string }) {
 
         <form onSubmit={handleCreateFilm} className="flex flex-col gap-3">
           <div className="form-control">
-            <label className="label"><span className="label-text font-medium">Judul Film</span></label>
-            <input type="text" className="input input-bordered w-full" required
+            <label className="label"><span className="label-text font-bold text-xs tracking-widest uppercase text-base-content/80">Judul Film</span></label>
+            <input type="text" className="input input-bordered w-full bg-base-100/50 focus:border-primary transition-colors" required
               value={newFilm.title} onChange={(e) => setNewFilm({ ...newFilm, title: e.target.value })}
             />
           </div>
 
           <div className="form-control">
-            <label className="label"><span className="label-text font-medium">Sinopsis</span></label>
-            <textarea className="textarea textarea-bordered h-24" placeholder="Opsional..."
+            <label className="label"><span className="label-text font-bold text-xs tracking-widest uppercase text-base-content/80">Sinopsis</span></label>
+            <textarea className="textarea textarea-bordered w-full h-32 bg-base-100/50 focus:border-primary transition-colors" placeholder="Opsional..."
               value={newFilm.synopsis} onChange={(e) => setNewFilm({ ...newFilm, synopsis: e.target.value })}
             ></textarea>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="form-control">
-              <label className="label"><span className="label-text font-medium">Status Tayang</span></label>
-              <select className="select select-bordered w-full"
+              <label className="label"><span className="label-text font-bold text-xs tracking-widest uppercase text-base-content/80">Status Tayang</span></label>
+              <select className="select select-bordered w-full bg-base-100/50 focus:border-primary transition-colors"
                 value={newFilm.airing_status} onChange={(e) => setNewFilm({ ...newFilm, airing_status: e.target.value })}
               >
                 <option value="not_yet_aired">Belum Tayang</option>
@@ -112,23 +112,23 @@ export default function FilmForm({ token }: { token: string }) {
             </div>
 
             <div className="form-control">
-              <label className="label"><span className="label-text font-medium">Total Episode</span></label>
-              <input type="number" min="1" className="input input-bordered w-full" required
+              <label className="label"><span className="label-text font-bold text-xs tracking-widest uppercase text-base-content/80">Total Episode</span></label>
+              <input type="number" min="1" className="input input-bordered w-full bg-base-100/50 focus:border-primary transition-colors" required
                 value={newFilm.total_episodes} onChange={(e) => setNewFilm({ ...newFilm, total_episodes: Number(e.target.value) })}
               />
             </div>
           </div>
 
           <div className="form-control mb-4">
-            <label className="label"><span className="label-text font-medium">Tanggal Rilis</span></label>
-            <input type="date" className="input input-bordered w-full" required
+            <label className="label"><span className="label-text font-bold text-xs tracking-widest uppercase text-base-content/80">Tanggal Rilis</span></label>
+            <input type="date" className="input input-bordered w-full bg-base-100/50 focus:border-primary transition-colors" required
               value={newFilm.release_date} onChange={(e) => setNewFilm({ ...newFilm, release_date: e.target.value })}
             />
           </div>
 
           <div className="form-control">
-            <label className="label"><span className="label-text font-medium">Pilih Genre</span></label>
-            <div className="flex flex-wrap gap-2 p-3 border rounded-lg bg-base-200 max-h-40 overflow-y-auto">
+            <label className="label"><span className="label-text font-bold text-xs tracking-widest uppercase text-base-content/80">Pilih Genre</span></label>
+            <div className="flex flex-wrap gap-2 p-3 rounded-xl bg-base-100/30 border border-base-content/10 max-h-40 overflow-y-auto">
               {genres.map((g) => (
                 <label key={g.id} className="flex items-center gap-2 cursor-pointer bg-base-100 px-3 py-1 rounded-full border hover:border-primary transition-colors">
                   <input type="checkbox" className="checkbox checkbox-xs checkbox-primary"
@@ -145,8 +145,8 @@ export default function FilmForm({ token }: { token: string }) {
           </div>
 
           <div className="form-control mb-6">
-            <label className="label"><span className="label-text font-medium">Poster Film (Multiple)</span></label>
-            <input ref={fileInputRef} type="file" multiple accept="image/*" className="file-input file-input-bordered file-input-primary w-full"
+            <label className="label"><span className="label-text font-bold text-xs tracking-widest uppercase text-base-content/80">Poster Film (Multiple)</span></label>
+            <input ref={fileInputRef} type="file" multiple accept="image/*" className="file-input file-input-bordered file-input-primary w-full bg-base-100/50"
               onChange={(e) => setSelectedFiles(e.target.files)}
             />
           </div>

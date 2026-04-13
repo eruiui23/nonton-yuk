@@ -15,17 +15,17 @@ export default function RegisterPage() {
             <h1 className="text-5xl md:text-6xl font-black tracking-tighter leading-tight">
               Buat <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Akunmu.</span>
             </h1>
-            <p className="max-w-xl text-lg text-base-content/70 leading-relaxed mb-8">
+            <p className="max-w-xl text-lg text-base-content/90 leading-relaxed mb-8">
               Pendaftaran gratis seutuhnya. Mulai bangun watchlist pribadi, berikan ulasan komprehensif, serta nikmati ekosistem film eksklusif.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="rounded-3xl border border-base-content/5 bg-base-200/40 backdrop-blur-md p-6 shadow-xl">
                 <h3 className="font-bold tracking-wide">Mulai Singkat</h3>
-                <p className="mt-3 text-sm text-base-content/70 leading-relaxed font-medium">Hanya butuh sekian detik untuk bergabung ke dunia perfilman tanpa batas kami.</p>
+                <p className="mt-3 text-sm text-base-content/90 leading-relaxed font-medium">Hanya butuh sekian detik untuk bergabung ke dunia perfilman tanpa batas kami.</p>
               </div>
               <div className="rounded-3xl border border-base-content/5 bg-base-200/40 backdrop-blur-md p-6 shadow-xl">
                 <h3 className="font-bold tracking-wide">Terhubung Sentral</h3>
-                <p className="mt-3 text-sm text-base-content/70 leading-relaxed font-medium">Review, watchlist, dan profil dikemas elegan dalam dasbor sentral milikmu sendiri.</p>
+                <p className="mt-3 text-sm text-base-content/90 leading-relaxed font-medium">Review, watchlist, dan profil dikemas elegan dalam dasbor sentral milikmu sendiri.</p>
               </div>
             </div>
           </div>

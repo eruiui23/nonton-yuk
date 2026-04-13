@@ -78,7 +78,7 @@ export default function FilmDetailPage() {
             </div>
           ) : (
             <div className="bg-base-200/50 rounded-2xl p-10 text-center border-2 border-dashed border-base-300">
-              <p className="text-base-content/50 italic">Belum ada ulasan untuk film ini. Jadilah yang pertama!</p>
+              <p className="text-base-content/70 italic">Belum ada ulasan untuk film ini. Jadilah yang pertama!</p>
             </div>
           )}
         </div>
