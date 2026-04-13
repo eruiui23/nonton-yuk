@@ -33,22 +33,29 @@ export default function PublicGenresPage() {
   }, []);
 
   // Fitur Filter Lokal (Client-side) untuk mencari nama genre
-  const filteredGenres = genres.filter(g => 
+  const filteredGenres = genres.filter(g =>
     g.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="container mx-auto px-4 py-10 max-w-6xl">
-      <div className="rounded-[2rem] border border-base-200 bg-base-100/90 p-10 shadow-xl shadow-slate-200/40 backdrop-blur-xl mb-10">
-        <div className="text-center">
-          <h1 className="text-5xl md:text-6xl font-black mb-4">Eksplorasi Kategori</h1>
-          <p className="text-base-content/70 text-lg max-w-2xl mx-auto">
-            Temukan tontonan favoritmu berdasarkan genre dan langsung akses daftar film yang cocok.
-          </p>
-        </div>
-      </div>
+    <div className="container mx-auto px-4 py-10 max-w-7xl min-h-screen">
+      <section className="relative overflow-hidden rounded-3xl bg-base-200/40 border border-base-content/5 p-8 sm:p-12 mb-12">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/10 blur-[100px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
 
-      <GenreSearch search={search} onSearchChange={setSearch} />
+        <div className="relative z-10 text-center max-w-3xl mx-auto">
+          <div className="inline-block px-3 py-1 mb-6 rounded-full border border-secondary/30 bg-secondary/10 text-secondary text-xs font-bold tracking-widest uppercase">
+            Peta Kategori
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tighter leading-tight">
+            Eksplorasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Genre.</span>
+          </h1>
+          <p className="text-base-content/70 text-lg leading-relaxed mb-10">
+            Temukan tontonan favoritmu berdasarkan genre dan langsung telusuri ribuan judul mahakarya yang menantimu.
+          </p>
+          <GenreSearch search={search} onSearchChange={setSearch} />
+        </div>
+      </section>
 
       {isLoading ? (
         <div className="flex justify-center py-20"><span className="loading loading-spinner loading-lg text-primary"></span></div>
