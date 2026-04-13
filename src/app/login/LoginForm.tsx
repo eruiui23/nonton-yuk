@@ -55,31 +55,31 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="card-body p-8" onSubmit={handleLogin}>
+    <form className="card-body p-8 sm:p-12" onSubmit={handleLogin}>
       {errorMsg && (
-        <div className="alert alert-error shadow-sm text-sm p-3 rounded-2xl">
+        <div className="alert alert-error shadow-sm text-sm p-3 rounded-2xl mb-4 font-bold">
           <span>{errorMsg}</span>
         </div>
       )}
 
-      <div className="flex flex-col gap-2 mb-4">
-        <label className="font-semibold text-base-content/90">Email</label>
+      <div className="flex flex-col gap-2 mb-5">
+        <label className="font-bold text-sm tracking-widest text-base-content/70 uppercase">Email</label>
         <input
           type="email"
           placeholder="email@contoh.com"
-          className="input input-bordered input-lg w-full"
+          className="input input-bordered input-lg w-full bg-base-100/50 backdrop-blur-sm focus:border-primary transition-colors"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </div>
       
-      <div className="flex flex-col gap-2 mb-6">
-        <label className="font-semibold text-base-content/90">Password</label>
+      <div className="flex flex-col gap-2 mb-8">
+        <label className="font-bold text-sm tracking-widest text-base-content/70 uppercase">Password</label>
         <input
           type="password"
           placeholder="********"
-          className="input input-bordered input-lg w-full"
+          className="input input-bordered input-lg w-full bg-base-100/50 backdrop-blur-sm focus:border-primary transition-colors"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -89,10 +89,10 @@ export default function LoginForm() {
       <div className="mt-2">
         <button 
           type="submit" 
-          className="btn btn-primary btn-lg w-full"
+          className="btn btn-primary btn-lg w-full shadow-lg shadow-primary/30"
           disabled={isLoading}
         >
-          {isLoading ? <span className="loading loading-spinner"></span> : 'Masuk'}
+          {isLoading ? <span className="loading loading-spinner"></span> : 'Masuk Sekarang'}
         </button>
       </div>
     </form>

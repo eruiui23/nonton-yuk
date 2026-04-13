@@ -44,10 +44,10 @@ export default function UnifiedProfilePage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <UserHeader 
-        displayName={profile.display_name} 
-        username={profile.username} 
-        bio={profile.bio || "Tidak ada bio."} 
+      <UserHeader
+        displayName={profile.display_name}
+        username={profile.username}
+        bio={profile.bio || "Tidak ada bio."}
       />
 
       {/* SEKSI WATCHLIST */}
@@ -56,9 +56,9 @@ export default function UnifiedProfilePage() {
           <Clapperboard className="w-7 h-7 text-primary" />
           Watchlist {isOwner && <span className="badge badge-secondary badge-sm">Milik Saya</span>}
         </h2>
-        <UserWatchlist 
-          items={profile.film_lists || []} 
-          isOwner={isOwner} 
+        <UserWatchlist
+          items={profile.film_lists || []}
+          isOwner={isOwner}
           token={token}
           onRefresh={fetchProfile}
         />

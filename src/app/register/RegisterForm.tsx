@@ -54,9 +54,9 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="card-body p-8">
-      <h2 className="text-3xl font-bold mb-2 text-center">Daftar Akun User</h2>
-      <p className="text-center text-base-content/70 mb-6">
+    <div className="card-body p-8 sm:p-10">
+      <h2 className="text-3xl font-black mb-1 text-center tracking-tight">Daftar Akun User</h2>
+      <p className="text-center text-sm font-medium text-base-content/70 mb-6">
         Lengkapi data di bawah ini untuk mulai menyimpan watchlist.
       </p>
 
@@ -74,26 +74,26 @@ export default function RegisterForm() {
         </div>
       )}
 
-      <form onSubmit={handleRegister} className="flex flex-col gap-3">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col gap-2 w-full">
-            <label className="font-semibold text-base-content/90">Username</label>
+      <form onSubmit={handleRegister} className="flex flex-col gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="flex flex-col gap-1 w-full">
+            <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Username</label>
             <input 
               type="text" 
               placeholder="tanpa_spasi" 
-              className="input input-bordered input-lg w-full focus:input-primary" 
+              className="input input-bordered input-md w-full bg-base-100/50 backdrop-blur-sm focus:border-secondary transition-colors" 
               required
               value={formData.username}
               onChange={(e) => setFormData({...formData, username: e.target.value.replace(/\s+/g, '')})}
             />
           </div>
 
-          <div className="flex flex-col gap-2 w-full">
-            <label className="font-semibold text-base-content/90">Display Name</label>
+          <div className="flex flex-col gap-1 w-full">
+            <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Display Name</label>
             <input 
               type="text" 
-              placeholder="Nama Tampilan" 
-              className="input input-bordered input-lg w-full focus:input-primary" 
+              placeholder="Nama Lengkap" 
+              className="input input-bordered input-md w-full bg-base-100/50 backdrop-blur-sm focus:border-secondary transition-colors" 
               required
               value={formData.display_name}
               onChange={(e) => setFormData({...formData, display_name: e.target.value})}
@@ -101,24 +101,24 @@ export default function RegisterForm() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
-          <label className="font-semibold text-base-content/90">Email</label>
+        <div className="flex flex-col gap-1 w-full">
+          <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Email</label>
           <input 
             type="email" 
             placeholder="nama@email.com" 
-            className="input input-bordered input-lg w-full focus:input-primary" 
+            className="input input-bordered input-md w-full bg-base-100/50 backdrop-blur-sm focus:border-secondary transition-colors" 
             required
             value={formData.email}
             onChange={(e) => setFormData({...formData, email: e.target.value})}
           />
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
-          <label className="font-semibold text-base-content/90">Password</label>
+        <div className="flex flex-col gap-1 w-full">
+          <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Password</label>
           <input 
             type="password" 
             placeholder="••••••••" 
-            className="input input-bordered input-lg w-full focus:input-primary" 
+            className="input input-bordered input-md w-full bg-base-100/50 backdrop-blur-sm focus:border-secondary transition-colors" 
             required
             minLength={6}
             value={formData.password}
@@ -126,11 +126,11 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div className="flex flex-col gap-2 w-full mb-2">
-          <label className="font-semibold text-base-content/90">Bio</label>
+        <div className="flex flex-col gap-1 w-full mb-2">
+          <label className="font-bold text-xs tracking-widest text-base-content/70 uppercase pl-1">Bio Profile</label>
           <textarea 
-            placeholder="Ceritakan sedikit tentang dirimu..." 
-            className="textarea textarea-bordered textarea-lg w-full focus:textarea-primary h-24" 
+            placeholder="Tulis sedikit tentang dirimu (Opsional)..." 
+            className="textarea textarea-bordered textarea-md w-full bg-base-100/50 backdrop-blur-sm focus:border-secondary transition-colors h-20" 
             value={formData.bio}
             onChange={(e) => setFormData({...formData, bio: e.target.value})}
           ></textarea>
@@ -138,10 +138,10 @@ export default function RegisterForm() {
 
         <button 
           type="submit" 
-          className="btn btn-primary w-full"
+          className="btn btn-secondary w-full shadow-lg mt-2 font-bold tracking-wide"
           disabled={isLoading || !!successMsg}
         >
-          {isLoading ? <span className="loading loading-spinner"></span> : 'Daftar Sekarang'}
+          {isLoading ? <span className="loading loading-spinner"></span> : 'Selesaikan Pendaftaran'}
         </button>
       </form>
 
