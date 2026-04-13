@@ -37,7 +37,11 @@ export default function UserWatchlistItem({ item, isOwner, loadingId, onToggleVi
               className="toggle toggle-primary toggle-sm"
               checked={item.visibility === 'public'}
               disabled={loadingId === item.id}
-              onChange={() => onToggleVisibility(item.id, item.visibility)}
+              onChange={() => {
+                if (item.id && item.visibility) {
+                  onToggleVisibility(item.id, item.visibility);
+                }
+              }}
             />
             {loadingId === item.id && <span className="loading loading-spinner loading-xs text-primary"></span>}
           </div>
