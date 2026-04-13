@@ -56,7 +56,7 @@ export default function Navbar() {
         ) : (
           // SKENARIO B: User (Sudah Login)
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar placeholder">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar avatar-placeholder">
               <div className="bg-primary text-primary-content w-10 rounded-full">
                 <span className="text-xl">
                   {user?.display_name?.charAt(0) || 'U'}
