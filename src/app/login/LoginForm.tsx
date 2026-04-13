@@ -3,59 +3,48 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '../../store/useAuthStore';
+import { useMutation } from '@tanstack/react-query';
 import api from '../../services/api';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setErrorMsg('');
-
-    try {
-      const loginResponse = await api.post('/auth/login', {
-        email,
-        password,
-      });
-
+  const { mutate: handleLogin, isPending, error } = useMutation({
+    mutationFn: async () => {
+      const loginResponse = await api.post('/auth/login', { email, password });
       const token = loginResponse.data.data.token;
 
       const meResponse = await api.get('/auth/me', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       const userData = meResponse.data.data.personal_info;
-
-      login(userData, token); 
-
+      return { token, userData };
+    },
+    onSuccess: ({ token, userData }) => {
+      login(userData, token);
       document.cookie = `token=${token}; path=/; max-age=86400; SameSite=Lax`;
       document.cookie = `role=${userData.role}; path=/; max-age=86400; SameSite=Lax`;
-
       router.push('/');
-      
-    } catch (error: unknown) {
-      const err = error as { response?: { data?: { message?: string } } };
-      if (err.response?.data?.message) {
-        setErrorMsg(err.response.data.message);
-      } else {
-        setErrorMsg('Terjadi kesalahan pada server. Coba lagi nanti.');
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+  });
+
+  const errorMsg = error
+    ? ((error as any).response?.data?.message || 'Terjadi kesalahan pada server. Coba lagi nanti.')
+    : null;
 
   return (
-    <form className="card-body p-8 sm:p-12" onSubmit={handleLogin}>
+    <form
+      className="card-body p-8 sm:p-12"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleLogin();
+      }}
+    >
       {errorMsg && (
         <div className="alert alert-error shadow-sm text-sm p-3 rounded-2xl mb-4 font-bold">
           <span>{errorMsg}</span>
@@ -73,7 +62,7 @@ export default function LoginForm() {
           required
         />
       </div>
-      
+
       <div className="flex flex-col gap-2 mb-8">
         <label className="font-bold text-sm tracking-widest text-base-content/90 uppercase">Password</label>
         <input
@@ -85,14 +74,14 @@ export default function LoginForm() {
           required
         />
       </div>
-      
+
       <div className="mt-2">
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="btn btn-primary btn-lg w-full shadow-lg shadow-primary/30"
-          disabled={isLoading}
+          disabled={isPending}
         >
-          {isLoading ? <span className="loading loading-spinner"></span> : 'Masuk Sekarang'}
+          {isPending ? <span className="loading loading-spinner"></span> : 'Masuk Sekarang'}
         </button>
       </div>
     </form>

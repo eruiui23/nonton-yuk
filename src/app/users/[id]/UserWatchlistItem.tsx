@@ -43,7 +43,9 @@ export default function UserWatchlistItem({ item, isOwner, loadingId, onToggleVi
                 }
               }}
             />
-            {loadingId === item.id && <span className="loading loading-spinner loading-xs text-primary"></span>}
+            <div className="w-4 flex justify-center">
+              {loadingId === item.id && <span className="loading loading-spinner loading-xs text-primary"></span>}
+            </div>
           </div>
         )}
       </div>

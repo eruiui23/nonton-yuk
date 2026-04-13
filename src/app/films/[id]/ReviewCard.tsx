@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link'; // <--- Wajib import ini buat pindah halaman
+import Link from 'next/link';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import api from '../../../services/api';
 import { Star, ThumbsUp, ThumbsDown } from 'lucide-react';
 
@@ -24,67 +24,50 @@ interface ReviewCardProps {
 
 export default function ReviewCard({ review, token, onRefresh }: ReviewCardProps) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  
-  // STATE BARU: Untuk menyimpan nama pembuat ulasan
-  const [authorName, setAuthorName] = useState<string>(`Memuat...`);
+  const queryClient = useQueryClient();
 
-  const myReaction = review.reactions && review.reactions.length > 0 
-    ? review.reactions[0] 
-    : null;
+  // Gunakan useQuery untuk mengambil data author — TanStack akan otomatis cache hasilnya
+  // sehingga user yang sama tidak di-fetch ulang di setiap kartu
+  const { data: authorName = `User #${review.user_id.slice(0, 5)}` } = useQuery({
+    queryKey: ['user', review.user_id],
+    queryFn: async () => {
+      const res = await api.get(`/users/${review.user_id}`);
+      return res.data.data.display_name || res.data.data.username || `User #${review.user_id.slice(0, 5)}`;
+    },
+    staleTime: 1000 * 60 * 10, // Cache nama user selama 10 menit
+  });
 
-  // JURUS N+1: Ambil data user saat kartu ulasan ini dimunculkan di layar
-  useEffect(() => {
-    const fetchAuthorData = async () => {
-      try {
-        const res = await api.get(`/users/${review.user_id}`);
-        // Asumsi struktur data profil ada display_name atau username
-        const name = res.data.data.display_name || res.data.data.username || `User #${review.user_id.slice(0,5)}`;
-        setAuthorName(name);
-      } catch (error) {
-        // Kalau error (misal user dihapus), fallback ke ID saja
-        setAuthorName(`User #${review.user_id.slice(0,5)}`);
+  const myReaction = review.reactions && review.reactions.length > 0 ? review.reactions[0] : null;
+
+  const { mutate: handleReact, isPending: isLoading } = useMutation({
+    mutationFn: async (targetType: 'like' | 'dislike') => {
+      if (!token) {
+        router.push('/login');
+        throw new Error('Silakan login untuk memberikan reaksi.');
       }
-    };
+      if (myReaction?.status === targetType) return; // sudah bereaksi sama
 
-    fetchAuthorData();
-  }, [review.user_id]);
-
-  const handleReact = async (targetType: 'like' | 'dislike') => {
-    if (!token) {
-      alert('Silakan login untuk memberikan reaksi.');
-      router.push('/login');
-      return;
-    }
-
-    if (myReaction?.status === targetType) {
-       // Opsional: Kalau mau nambahin fitur Batal React (DELETE), taruh sini
-       // await api.delete(`/reactions/${myReaction.id}`, { headers: ... });
-       return;
-    }
-
-    setIsLoading(true);
-    try {
       if (!myReaction) {
-        // Ingat hotfix semalam: pakenya 'status' bukan 'reaction_type' ya!
-        await api.post('/reactions', 
+        await api.post(
+          '/reactions',
           { review_id: review.id, status: targetType },
           { headers: { Authorization: `Bearer ${token}` } }
         );
       } else {
-        await api.put(`/reactions/${myReaction.id}`, 
+        await api.put(
+          `/reactions/${myReaction.id}`,
           { status: targetType },
           { headers: { Authorization: `Bearer ${token}` } }
         );
       }
+    },
+    onSuccess: () => {
       onRefresh();
-    } catch (error) {
-      console.error(error);
-      alert('Gagal memproses reaksi.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    onError: (error: any) => {
+      alert(error.message || 'Gagal memproses reaksi.');
+    },
+  });
 
   return (
     <div className="card bg-base-100 border border-base-200 shadow-sm mb-4 transition-all hover:border-primary/30">
@@ -92,31 +75,37 @@ export default function ReviewCard({ review, token, onRefresh }: ReviewCardProps
         <div className="flex justify-between items-start">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              {/* TOMBOL KE PROFIL USER */}
-              <Link 
-                href={`/users/${review.user_id}`} 
+              <Link
+                href={`/users/${review.user_id}`}
                 className="font-bold text-sm text-primary hover:underline decoration-2 underline-offset-4"
               >
                 {authorName}
               </Link>
-              <div className="badge badge-warning badge-sm font-bold shadow-sm"><Star className="w-3 h-3 fill-current inline-block mr-1" />{review.rating}</div>
+              <div className="badge badge-warning badge-sm font-bold shadow-sm">
+                <Star className="w-3 h-3 fill-current inline-block mr-1" />
+                {review.rating}
+              </div>
             </div>
             <p className="text-base-content/80 text-sm">"{review.comment}"</p>
           </div>
         </div>
 
         <div className="card-actions justify-end mt-4 pt-4 border-t border-base-200 gap-3">
-          <button 
+          <button
             onClick={() => handleReact('like')}
             disabled={isLoading}
-            className={`btn btn-xs sm:btn-sm gap-2 shadow-sm ${myReaction?.status === 'like' ? 'btn-success text-white' : 'btn-outline btn-success'}`}
+            className={`btn btn-xs sm:btn-sm gap-2 shadow-sm ${
+              myReaction?.status === 'like' ? 'btn-success text-white' : 'btn-outline btn-success'
+            }`}
           >
             <ThumbsUp className="w-4 h-4" /> {review.likes}
           </button>
-          <button 
+          <button
             onClick={() => handleReact('dislike')}
             disabled={isLoading}
-            className={`btn btn-xs sm:btn-sm gap-2 shadow-sm ${myReaction?.status === 'dislike' ? 'btn-error text-white' : 'btn-outline btn-error'}`}
+            className={`btn btn-xs sm:btn-sm gap-2 shadow-sm ${
+              myReaction?.status === 'dislike' ? 'btn-error text-white' : 'btn-outline btn-error'
+            }`}
           >
             <ThumbsDown className="w-4 h-4" /> {review.dislikes}
           </button>
