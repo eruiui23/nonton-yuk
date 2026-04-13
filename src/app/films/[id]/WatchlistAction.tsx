@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { CalendarDays, Eye, CheckCircle, Check } from 'lucide-react';
 import api from '../../../services/api';
 
 interface WatchlistActionProps {
@@ -58,17 +59,17 @@ export default function WatchlistAction({ filmId, token }: WatchlistActionProps)
       <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 rounded-box w-full border border-base-200 mt-1">
         <li>
           <button onClick={() => handleAdd('plan_to_watch')} disabled={status === 'loading'}>
-            🗓️ Plan to Watch
+            <CalendarDays className="w-4 h-4 mr-1 opacity-70" /> Plan to Watch
           </button>
         </li>
         <li>
           <button onClick={() => handleAdd('watching')} disabled={status === 'loading'}>
-            👀 Watching
+            <Eye className="w-4 h-4 mr-1 opacity-70" /> Watching
           </button>
         </li>
         <li>
           <button onClick={() => handleAdd('completed')} disabled={status === 'loading'}>
-            ✅ Completed
+            <CheckCircle className="w-4 h-4 mr-1 opacity-70" /> Completed
           </button>
         </li>
       </ul>
