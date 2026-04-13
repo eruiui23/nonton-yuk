@@ -15,7 +15,7 @@ export default function FilmCard({ film }: { film: Film }) {
     return (
         <Link
             href={`/films/${film.id}`}
-            className="group block relative w-full aspect-[2/3] rounded-lg overflow-hidden border border-base-200/40 bg-base-300/50 hover:border-primary hover:ring-2 hover:ring-primary transition-all duration-300 shadow-sm cursor-pointer"
+            className="group block relative w-full aspect-[2/3] rounded-lg overflow-hidden border border-base-200/40 bg-base-300/50 hover:border-primary hover:ring-2 hover:ring-primary hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:z-10 transition-all duration-300 shadow-sm cursor-pointer"
         >
             {film.imageUrl ? (
                 <Image
