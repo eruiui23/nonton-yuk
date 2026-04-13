@@ -18,9 +18,10 @@ export default function LandingPage() {
       <div className="absolute top-0 w-full h-[500px] bg-primary/20 blur-[150px] rounded-full sm:-top-[300px] pointer-events-none"></div>
 
       {/* Marquee Background Element */}
-      <div className="absolute top-1/4 left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none -translate-y-1/2">
-        <div className="whitespace-nowrap flex font-black text-[12vw] uppercase animate-marquee text-primary leading-none">
-          🎬 FILM 🍿 SERIES ⭐️ REVIEW 🎥 NONTON 🎟️ TIKET 🎭 DRAMA
+      <div className="absolute top-1/4 left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none -translate-y-1/2 flex">
+        <div className="whitespace-nowrap flex w-max font-black text-[12vw] uppercase animate-marquee text-primary leading-none">
+          <span className="pr-8">🎬 FILM 🍿 SERIES ⭐️ REVIEW 🎥 NONTON 🎟️ TIKET 🎭 DRAMA</span>
+          <span className="pr-8">🎬 FILM 🍿 SERIES ⭐️ REVIEW 🎥 NONTON 🎟️ TIKET 🎭 DRAMA</span>
         </div>
       </div>
 
