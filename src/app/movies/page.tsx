@@ -78,18 +78,25 @@ function HomeContent() {
 
   return (
     <div className="container mx-auto px-4 py-10 max-w-7xl min-h-screen">
-      <section className="relative overflow-hidden rounded-[2rem] bg-primary text-primary-content p-10 shadow-[0_35px_120px_-45px_rgba(59,130,246,0.9)] mb-10">
-        <div className="pointer-events-none absolute inset-0 "></div>
-        <div className="relative grid gap-6 lg:grid-cols-[1.4fr_0.9fr] items-center">
+      <section className="relative overflow-hidden rounded-3xl bg-base-200/40 border border-base-content/5 p-8 sm:p-12 mb-12">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-accent/10 blur-[100px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
+        
+        <div className="relative grid gap-8 lg:grid-cols-[1fr_300px] items-center z-10">
           <div>
-            <span className="badge badge-secondary badge-lg">Temukan Film</span>
-            <h1 className="mt-6 text-5xl sm:text-6xl font-black leading-tight tracking-tight">Nonton jadi mudah, cepat, dan modern.</h1>
-            <p className="mt-6 max-w-2xl text-base-content/90 text-lg">
-              Jelajahi katalog film, lihat review terkini, dan kelola watchlist dengan tampilan yang bersih dan responsif.
+            <div className="inline-block px-3 py-1 mb-6 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase">
+              Katalog Lengkap
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 tracking-tighter leading-tight">
+              Eksplorasi Dunia <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Perfilman.</span>
+            </h1>
+            <p className="max-w-xl text-base-content/70 text-lg leading-relaxed">
+              Jelajahi ribuan judul film, saring berdasarkan genre kesukaanmu, dan temukan tontonan mahakarya untuk menemanimu hari ini.
             </p>
           </div>
-          <div className="rounded-[1.75rem] bg-base-100 p-8 shadow-xl border border-base-200 backdrop-blur-xl text-base-content">
-            <h2 className="text-xl font-semibold mb-4">Cari film favoritmu</h2>
+          <div className="bg-base-100/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-base-content/10">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-base-content/50 mb-5 text-center lg:text-left">Cari Judul</h2>
             <SearchHeader search={search} setSearch={setSearch} setPage={setPage} />
           </div>
         </div>
@@ -113,7 +120,7 @@ function HomeContent() {
       {isLoading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
           {[...Array(12)].map((_, i) => (
-            <div key={i} className="h-auto aspect-[2/3] w-full rounded-lg bg-base-200/50 animate-pulse border border-base-200/30"></div>
+            <div key={i} className="h-auto aspect-[2/3] w-full rounded-2xl bg-base-200/50 animate-pulse border border-base-200/30"></div>
           ))}
         </div>
       ) : (
