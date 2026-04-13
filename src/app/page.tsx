@@ -36,7 +36,7 @@ function HomeContent() {
   const fetchFilms = useCallback(async () => {
     try {
       setIsLoading(true);
-      
+
       const params: Record<string, string | number> = {
         page: page,
         take: 12,
@@ -51,7 +51,7 @@ function HomeContent() {
       // Jika ada filter genre dari URL
       if (genreIdFilter) {
         // Asumsi param backend adalah "genre", sesuaikan jika di spec-nya "genre_id"
-        params.genre = genreIdFilter; 
+        params.genre = genreIdFilter;
       }
 
       const response = await api.get('/films', { params });
@@ -74,12 +74,12 @@ function HomeContent() {
   useEffect(() => {
     const delayDebounce = setTimeout(fetchFilms, 500);
     return () => clearTimeout(delayDebounce);
-  }, [fetchFilms]); 
+  }, [fetchFilms]);
 
   return (
     <div className="container mx-auto px-4 py-10 max-w-7xl min-h-screen">
       <section className="relative overflow-hidden rounded-[2rem] bg-primary text-primary-content p-10 shadow-[0_35px_120px_-45px_rgba(59,130,246,0.9)] mb-10">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.35),_transparent_20%)]"></div>
+        <div className="pointer-events-none absolute inset-0 "></div>
         <div className="relative grid gap-6 lg:grid-cols-[1.4fr_0.9fr] items-center">
           <div>
             <span className="badge badge-secondary badge-lg">Temukan Film</span>
@@ -121,7 +121,7 @@ function HomeContent() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
             {films.map((film) => <FilmCard key={film.id} film={film} />)}
           </div>
-          
+
           {films.length === 0 && (
             <div className="text-center py-20 bg-base-100 rounded-[1.75rem] mt-6 border border-dashed border-base-200 shadow-sm">
               <h3 className="text-2xl font-bold opacity-60 italic">Film tidak ditemukan...</h3>

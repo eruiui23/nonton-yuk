@@ -56,19 +56,15 @@ export default function Navbar() {
         ) : (
           // SKENARIO B: User (Sudah Login)
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar placeholder ring ring-transparent hover:ring-primary transition-all">
-              <div className="bg-primary text-primary-content rounded-full w-10">
-                <span className="font-bold text-lg uppercase">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar placeholder">
+              <div className="bg-primary text-primary-content w-10 rounded-full">
+                <span className="text-xl">
                   {user?.display_name?.charAt(0) || 'U'}
                 </span>
               </div>
             </div>
 
             <ul tabIndex={0} className="mt-4 z-[1] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-base-200">
-              <li className="menu-title px-4 py-2 opacity-60">
-                Hi, {user?.display_name}
-              </li>
-
               <li>
                 <Link href={`/users/${user?.id}`} className="py-3 font-medium">Profil</Link>
               </li>

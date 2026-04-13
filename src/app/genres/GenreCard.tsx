@@ -13,7 +13,7 @@ export default function GenreCard({ genre }: GenreCardProps) {
   return (
     <Link
       href={`/?genreId=${genre.id}&genreName=${genre.name}`}
-      className="card glass-card border border-base-200 shadow-lg hover:-translate-y-1 transform transition-all duration-300 overflow-hidden group"
+      className="card bg-base-200 hover:bg-base-300 border border-base-content/10 shadow-lg hover:-translate-y-1 transform transition-all duration-300 overflow-hidden group"
     >
       <div className="card-body items-center justify-center p-6 text-center">
         <span className="text-lg font-semibold capitalize group-hover:text-primary transition-colors">
