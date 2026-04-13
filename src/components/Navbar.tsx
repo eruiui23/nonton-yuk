@@ -42,7 +42,7 @@ export default function Navbar() {
         <Link href="/genres" className="btn btn-ghost btn-sm">
           Kategori
         </Link>
-        <Link href="/" className="btn btn-ghost btn-sm">
+        <Link href="/movies" className="btn btn-ghost btn-sm">
           Film
         </Link>
       </div>
@@ -64,7 +64,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            <ul tabIndex={0} className="mt-4 z-[1] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-base-200">
+            <ul tabIndex={0} className="mt-4 z-[1] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-32 border border-base-200 text-center">
               <li>
                 <Link href={`/users/${user?.id}`} className="py-3 font-medium">Profil</Link>
               </li>
@@ -72,7 +72,7 @@ export default function Navbar() {
               {/* Tambahan Menu KHUSUS ADMIN */}
               {user?.role === 'ADMIN' && (
                 <li>
-                  <Link href="/admin" className="py-3 font-medium text-secondary">🛡️ Panel Admin</Link>
+                  <Link href="/admin" className="py-3 font-medium text-secondary">Adimin Panel</Link>
                 </li>
               )}
 

@@ -1,154 +1,82 @@
 'use client';
-import { useState, useEffect, useCallback, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
-import api from '../services/api';
+import Link from 'next/link';
+import { useAuthStore } from '../store/useAuthStore';
+import { ArrowRight, Film, Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
-// Import komponen tetangga
-import SearchHeader from './SearchHeader';
-import FilmCard from './FilmCard';
-import Pagination from './Pagination';
+export default function LandingPage() {
+  const { user } = useAuthStore();
+  const [mounted, setMounted] = useState(false);
 
-type FilmItem = {
-  id: string;
-  title: string;
-  images?: string[];
-  airing_status: string;
-  total_episodes: number;
-  average_rating: number;
-  imageUrl?: string | null;
-};
-
-// 1. Kita pisahkan isi utamanya ke komponen HomeContent
-function HomeContent() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  // Tangkap parameter dari URL
-  const genreIdFilter = searchParams.get('genreId');
-  const genreNameFilter = searchParams.get('genreName');
-
-  const [films, setFilms] = useState<FilmItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [search, setSearch] = useState('');
-
-  const fetchFilms = useCallback(async () => {
-    try {
-      setIsLoading(true);
-
-      const params: Record<string, string | number> = {
-        page: page,
-        take: 12,
-      };
-
-      // Jika ada pencarian teks
-      if (search) {
-        params.filter_by = 'title';
-        params.filter = search;
-      }
-
-      // Jika ada filter genre dari URL
-      if (genreIdFilter) {
-        // Asumsi param backend adalah "genre", sesuaikan jika di spec-nya "genre_id"
-        params.genre = genreIdFilter;
-      }
-
-      const response = await api.get('/films', { params });
-      const filmsData = response.data.data as FilmItem[];
-      const meta = response.data.meta[0];
-
-      setTotalPages(meta.total_page || 1);
-      setFilms(filmsData.map((f) => ({
-        ...f,
-        imageUrl: Array.isArray(f.images) ? f.images[0] : null
-      })));
-    } catch (error: unknown) {
-      console.error('Gagal memuat film', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [page, search, genreIdFilter]);
-
-  // Tambahkan genreIdFilter ke dalam dependency array agar fetch diulang saat filter berganti
+  // Prevent hydration mismatch for user
   useEffect(() => {
-    const delayDebounce = setTimeout(fetchFilms, 500);
-    return () => clearTimeout(delayDebounce);
-  }, [fetchFilms]);
+    setMounted(true);
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 py-10 max-w-7xl min-h-screen">
-      <section className="relative overflow-hidden rounded-[2rem] bg-primary text-primary-content p-10 shadow-[0_35px_120px_-45px_rgba(59,130,246,0.9)] mb-10">
-        <div className="pointer-events-none absolute inset-0 "></div>
-        <div className="relative grid gap-6 lg:grid-cols-[1.4fr_0.9fr] items-center">
-          <div>
-            <span className="badge badge-secondary badge-lg">Temukan Film</span>
-            <h1 className="mt-6 text-5xl sm:text-6xl font-black leading-tight tracking-tight">Nonton jadi mudah, cepat, dan modern.</h1>
-            <p className="mt-6 max-w-2xl text-base-content/90 text-lg">
-              Jelajahi katalog film, lihat review terkini, dan kelola watchlist dengan tampilan yang bersih dan responsif.
-            </p>
-          </div>
-          <div className="rounded-[1.75rem] bg-base-100 p-8 shadow-xl border border-base-200 backdrop-blur-xl text-base-content">
-            <h2 className="text-xl font-semibold mb-4">Cari film favoritmu</h2>
-            <SearchHeader search={search} setSearch={setSearch} setPage={setPage} />
-          </div>
+    <div className="min-h-[calc(100vh-5rem)] flex flex-col justify-center bg-base-100 overflow-hidden relative">
+      <div className="absolute top-0 w-full h-[500px] bg-primary/20 blur-[150px] rounded-full sm:-top-[300px] pointer-events-none"></div>
+
+      {/* Marquee Background Element */}
+      <div className="absolute top-1/4 left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none -translate-y-1/2">
+        <div className="whitespace-nowrap flex font-black text-[12vw] uppercase animate-marquee text-primary leading-none">
+          🎬 FILM 🍿 SERIES ⭐️ REVIEW 🎥 NONTON 🎟️ TIKET 🎭 DRAMA
         </div>
-      </section>
-
-      {genreNameFilter && (
-        <div className="mb-8 flex flex-wrap items-center gap-3 rounded-3xl border border-info/20 bg-info/10 px-5 py-4 text-base-content/90 shadow-sm">
-          <span className="font-semibold uppercase tracking-[0.2em] text-sm text-info">Filter Genre</span>
-          <div className="badge badge-info badge-outline font-semibold py-3 px-4">
-            {genreNameFilter}
-          </div>
-          <button
-            onClick={() => router.push('/')}
-            className="btn btn-sm btn-ghost border border-info/20"
-          >
-            Reset
-          </button>
-        </div>
-      )}
-
-      {isLoading ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
-          {[...Array(12)].map((_, i) => (
-            <div key={i} className="h-auto aspect-[2/3] w-full rounded-lg bg-base-200/50 animate-pulse border border-base-200/30"></div>
-          ))}
-        </div>
-      ) : (
-        <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
-            {films.map((film) => <FilmCard key={film.id} film={film} />)}
-          </div>
-
-          {films.length === 0 && (
-            <div className="text-center py-20 bg-base-100 rounded-[1.75rem] mt-6 border border-dashed border-base-200 shadow-sm">
-              <h3 className="text-2xl font-bold opacity-60 italic">Film tidak ditemukan...</h3>
-              {genreNameFilter && (
-                <p className="mt-2 text-base-content/70">Coba hapus filter genre untuk melihat film lainnya.</p>
-              )}
-            </div>
-          )}
-
-          {films.length > 0 && (
-            <Pagination page={page} totalPages={totalPages} setPage={setPage} />
-          )}
-        </>
-      )}
-    </div>
-  );
-}
-
-// 2. Bungkus komponen utamanya dengan Suspense untuk Export
-export default function HomePage() {
-  return (
-    <Suspense fallback={
-      <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg text-primary"></span>
       </div>
-    }>
-      <HomeContent />
-    </Suspense>
+
+      <div className="container mx-auto px-4 sm:px-8 py-20 lg:py-32 relative z-10 flex flex-col items-center text-center">
+        {mounted && (
+          <div className="badge badge-primary badge-outline px-4 py-3 mb-8 shadow-sm">
+            <span className="font-semibold tracking-widest text-sm">
+              HALO, {user?.display_name ? user.display_name.toUpperCase() : 'PENGGUNA'}!
+            </span>
+          </div>
+        )}
+
+        <h1 className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter mb-8 max-w-5xl leading-tight">
+          Satu Tempat Untuk <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            Semua Tontonanmu.
+          </span>
+        </h1>
+
+        <p className="text-lg md:text-xl text-base-content/70 max-w-2xl mb-12 font-medium">
+          Jelajahi ribuan film, tambahkan ke watchlist, dan baca ulasan terbaik dari komunitas Nonton Yuk!
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <Link
+            href="/movies"
+            className="btn btn-primary btn-lg rounded-full px-8 shadow-lg shadow-primary/30 hover:scale-105 transition-transform font-bold"
+          >
+            <Film className="w-5 h-5 mr-2" />
+            Mulai Eksplorasi
+            <ArrowRight className="w-5 h-5 ml-1" />
+          </Link>
+          {!user && (
+            <Link
+              href="/login"
+              className="btn btn-outline btn-lg rounded-full px-8 hover:scale-105 transition-transform"
+            >
+              Masuk / Daftar
+            </Link>
+          )}
+        </div>
+
+        {/* Floating Mini Cards */}
+        <div className="hidden lg:flex w-full justify-center gap-6 mt-24 opacity-80">
+          <div className="card glass-card bg-base-200/50 backdrop-blur-md p-6 rounded-3xl w-64 text-left border border-base-content/10 shadow-xl transform -rotate-6 hover:rotate-0 transition-transform cursor-default">
+            <Star className="w-10 h-10 text-warning mb-4" />
+            <h3 className="font-bold text-lg mb-2">Review Terpercaya</h3>
+            <p className="text-sm text-base-content/70">Baca pengalaman menonton dari user lain sebelum kamu memutuskannya.</p>
+          </div>
+          <div className="card glass-card bg-base-200/50 backdrop-blur-md p-6 rounded-3xl w-64 text-left border border-base-content/10 shadow-xl transform translate-y-8 hover:translate-y-4 transition-transform cursor-default">
+            <Film className="w-10 h-10 text-info mb-4" />
+            <h3 className="font-bold text-lg mb-2">Katalog Update</h3>
+            <p className="text-sm text-base-content/70">Rilisan terbaru dari berbagai genre bisa kamu temukan di sini.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
