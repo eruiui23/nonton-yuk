@@ -34,16 +34,18 @@ export default function Navbar() {
       <div className="flex-1 gap-4">
         <Link href="/" className=" items-center gap-2 text-2xl font-extrabold tracking-tight text-primary">
           {/* <span className="inline-block rounded-xl bg-primary/15 px-3 py-1 text-base-content"></span> */}
-          <span className="font-bitcount font-normal tracking-normal text-5xl text-white">Nonton<span className="text-primary font-lilita font-light ">Yuk!</span></span>
+          <span className="font-bitcount font-normal tracking-normal text-5xl text-white">Nonton<span className="text-primary">Yuk!</span></span>
           {/* <p className='m-auto text-xs text-white uppercase font-mplus font-bold tracking-widest -mt-1'>yuk hayuk...</p> */}
         </Link>
       </div>
-      <div className="hidden md:flex gap-2">
-        <Link href="/genres" className="btn btn-ghost btn-sm">
+      <div className="hidden md:flex items-center gap-8 ml-8 mr-8">
+        <Link href="/genres" className="font-bold text-sm tracking-widest uppercase text-base-content/70 hover:text-primary transition-colors duration-300 relative group">
           Kategori
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </Link>
-        <Link href="/movies" className="btn btn-ghost btn-sm">
+        <Link href="/movies" className="font-bold text-sm tracking-widest uppercase text-base-content/70 hover:text-primary transition-colors duration-300 relative group">
           Film
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </Link>
       </div>
       <div className="flex-none gap-2">
@@ -57,7 +59,7 @@ export default function Navbar() {
           // SKENARIO B: User (Sudah Login)
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar avatar-placeholder">
-              <div className="bg-primary text-primary-content w-10 rounded-full">
+              <div className="bg-primary text-primary-content w-24 rounded-full">
                 <span className="text-xl">
                   {user?.display_name?.charAt(0) || 'U'}
                 </span>

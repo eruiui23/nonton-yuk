@@ -15,12 +15,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Nonton Yuk', // %s akan diganti dengan judul halaman spesifik
-    default: 'Nonton Yuk - Jelajahi Dunia Film', // Judul default kalau di home
+    template: '%s | Nonton Yuk',
+    default: 'Nonton Yuk - Jelajahi Dunia Film',
   },
   description: 'Platform manajemen, katalog, dan ulasan film terbaik untukmu.',
   icons: {
-    icon: '/favicon.ico', // Bonus: Bikin icon tab browser jadi emoji clapperboard!
+    icon: '/favicon.ico',
   }
 };
 

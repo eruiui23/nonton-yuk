@@ -8,9 +8,9 @@ export default function UserHeader({ displayName, username, bio }: UserHeaderPro
   return (
     <div className="card bg-base-100 shadow-xl border border-base-200 mb-8">
       <div className="card-body flex-col md:flex-row items-center gap-6">
-        <div className="avatar placeholder">
-          <div className="bg-secondary text-secondary-content rounded-full w-24 ring ring-secondary ring-offset-base-100 ring-offset-2">
-            <span className="text-3xl font-bold uppercase">{displayName.charAt(0)}</span>
+        <div className="avatar avatar-placeholder">
+          <div className="bg-primary text-secondary-content rounded-full w-24 ">
+            <span className="text-5xl font-bold uppercase">{displayName.charAt(0)}</span>
           </div>
         </div>
         <div className="text-center md:text-left">
